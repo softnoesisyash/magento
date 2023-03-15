@@ -1,0 +1,1 @@
+"Fatal Error: 'Allowed memory size of 792723456 bytes exhausted (tried to allocate 736104448 bytes)' in '\/var\/www\/html\/magento245p1\/app\/code\/CommerceExtensions\/AddressType\/Observer\/Sales\/ModelServiceQuoteSubmitBefore.php' on line 48"

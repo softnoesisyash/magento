@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_ScheduleShipping
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="core_layout_render_element">
+        <observer name="magedelight_scheduleShipping_add_to_order_view" instance="Magedelight\ScheduleShipping\Observer\AddHtmlToOrderShippingView" />
+    </event>
+    <event name="sales_convert_order_to_quote">
+        <observer name="magedelight_schedule_order_to_quote" instance="Magedelight\ScheduleShipping\Observer\OrderToQuote" />
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="magedelight_schedule_save_order_backend" instance="Magedelight\ScheduleShipping\Observer\SaveOrderEdit" />
+    </event>    
+</config>

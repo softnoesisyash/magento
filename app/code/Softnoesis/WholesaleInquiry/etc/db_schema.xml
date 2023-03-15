@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Created By : Softnoesis Pvt. Ltd.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="otp_verification" resource="default" engine="innodb" comment="Wholesale Inquiry Table">
+      <column xsi:type="smallint" name="id" padding="7" unsigned="false" nullable="false" identity="true" comment="ID" />
+      <column xsi:type="varchar" name="fname" nullable="false" length="20" comment="First Name" />
+      <column xsi:type="varchar" name="lname" nullable="false" length="20" comment="Last Name" />
+      <column xsi:type="varchar" name="email" nullable="false" length="20" comment="Email" />
+      <column xsi:type="varchar" name="comment" nullable="false" length="255" 
+      comment="Comment" />
+      <column xsi:type="varchar" name="phone_no" length="1024" nullable="false" comment="Phone Number" />
+      <column xsi:type="varchar" name="otp" length="1024" nullable="false" comment="OTP" />
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="id" />
+      </constraint>
+   </table>
+</schema>

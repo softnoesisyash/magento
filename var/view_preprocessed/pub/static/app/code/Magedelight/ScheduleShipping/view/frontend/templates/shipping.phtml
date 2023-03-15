@@ -1,0 +1,193 @@
+<?php /** * Magedelight * Copyright (C) 2017 Magedelight <info@magedelight.com> * * @category Magedelight * @package Magedelight_ScheduleShipping * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/) * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0) * @author Magedelight <info@magedelight.com> */ $priceHelper = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Framework\Pricing\Helper\Data::class); if ($block->isScheduleShippingEnable() && $block->isScheduleShippingEnableForCustomer()) { ?> <?php if ($block->getDeliveryType() == 1) { ?> <div id="store-container-main" style="display: none"><div class="store-container-inner"><div id="delivery-date-box"><label for="delivery-date"><?= /* @noEscape */ $block->getDeliveryDateLabel(); ?></label> <input class="field required" data-validate="{required:true}" placeholder="Select Delivery Date" readonly="true" dataScope ="shippingAddress.delivery_date" valueUpdate = "keyup" hasFocus = "focused" type="text" id="delivery-date" name="delivery_date" autocomplete="off" /><br></div><div class="delivry-charge" style="display:none"><input class="field required" data-validate="{required:true}" placeholder="Delivery charge" dataScope ="shippingAddress.delivery_charge" valueUpdate = "keyup" hasFocus = "focused" type="text" id="custom_fee" name="custom-fee" autocomplete="off" disabled="disable"/></div><?php if ($block->getSamedayIsenable()) { ?> <?php $_amount = $block->getSamedayDeliveryAmount(); $formattedPrice = $priceHelper->currency($_amount, true, false); ?> <?php if ($_amount >= 0) { ?> <div class='sameday-delivery delivery' style="display:none"><input type="radio" name="additional_sameday_fee" value="<?= /* @noEscape */ $_amount; ?>" checked><?= /* @noEscape */ __("Same-Day Delivery Charge: ") . $formattedPrice; ?><br></div><?php } ?> <?php } ?> <?php if ($block->getNextdayIsenable()) { ?> <?php $_amount = $block->getNextdayDeliveryAmount(); $formattedPrice = $priceHelper->currency($_amount, true, false); ?> <?php if ($_amount >= 0) { ?> <div class='nextday-delivery delivery' style="display:none"><input type="radio" name="additional_next_fee" value="<?= /* @noEscape */ $_amount; ?>" checked><?= /* @noEscape */ __("Next-Day Delivery Charge: ") . $formattedPrice; ?><br></div><?php } ?> <?php } ?> <?php if ($block->isDeliveryMessageEnable()) { ?> <div class="addtional-message"><span><?= /* @noEscape */ $block->getDeliveryMessage(); ?></span></div><?php } ?> <?php if ($block->getEnableDeliveryDateComment()) { ?> <div id="delivery-comment-box"><label for="delivery_comment"><?= /* @noEscape */ $block->getDeliveryDateCommentLabel(); ?></label> <textarea id="delivery-comment" name="delivery_comment" class = "field required" autocomplete="off" data-validate="{required:true}" dataScope ="shippingAddress.pickup_date" valueUpdate = "keyup" hasFocus = "focused" placeholder="Enter Comment"></textarea></div><?php } ?> <?php if ($block->isEnableCallmeBeforeDelivery()) { ?> <div id="callme_before_delivery"><input type="checkbox" name="delivery_call" value="Yes"> Call me before Delivery</div><?php } ?></div></div><script type="text/javascript">
+
+            require(['jquery', 'Magento_Checkout/js/view/shipping', 'mage/calendar'], function ($) {
+
+
+                var initMyLib = function () {
+                    if (jQuery('#checkout-shipping-method-load').length) {
+                        jQuery('.table-checkout-shipping-method').after("<tr class='row'><td colspan='4'>" + jQuery("#store-container-main").html() + "</td></tr>");
+                        jQuery("#store-container-main").html("");
+
+
+                        function disabledaywise(date) {
+                            var day = date.getDay();
+                            var disableday = new Array();
+        <?php foreach ($block->getOffDay() as $key => $val) { ?> disableday.push(<?php echo $val; ?>);
+        <?php } ?> if ($.inArray(day, disableday) != -1) {
+                                return [false];
+                            }
+                            return [true];
+                        }
+
+                        var disabledDays = <?= /* @noEscape */ $block->getOffDate(); ?>;
+                        function nationalDays(date) {
+                            var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+                            for (i = 0; i < disabledDays.length; i++) {
+                                if ($.inArray((m + 1) + '-' + d + '-' + y, disabledDays) != -1) {
+                                    return [false];
+                                }
+                            }
+                            return [true];
+                        }
+
+                        function setCustomDate(date) {
+                            var arr2 = nationalDays(date);
+                            var arr3 = disabledaywise(date);
+                            return [(!arr2[0] || !arr3[0]) ? false : true];
+                        }
+                        var isEnableTime = <?= /* @noEscape */ $block->isEnableTimeInCalender(); ?>;
+
+                        var maxDate = null;
+        <?php if ($block->getMaxIntervalDate()) {
+            ?>
+                            maxDate = new Date();
+                            maxDate.setDate(maxDate.getDate() + <?= /* @noEscape */ $block->getMaxIntervalDate(); ?>);
+            <?php
+        }
+        ?> jQuery("#delivery-date").datetimepicker({
+                            showTimepicker: isEnableTime,
+                            hideIfNoPrevNext: true,
+                            buttonText: "<?= /* @noEscape */ __('Select Date') ?>",
+                            minDate: new Date(),
+                            maxDate: maxDate,
+                            dateFormat: 'yy-mm-dd',
+                            constrainInput: true,
+                            beforeShowDay: setCustomDate,
+                            onSelect: function (dateText, inst) {
+
+                                
+                                var inputDate = new Date(dateText);
+
+                                
+                                var todaysDate = new Date();
+
+                                
+                                var tomorrowDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+
+                                
+                                if (inputDate.setHours(0, 0, 0, 0) == todaysDate.setHours(0, 0, 0, 0)) {
+                                    
+                                    var today_charge = <?= /* @noEscape */ $block->getSamedayDeliveryAmount(); ?>;
+                                    jQuery('[name="custom-fee"]').val(today_charge);
+                                    jQuery('.nextday-delivery').hide();
+                                    jQuery('.sameday-delivery').show();
+                                } else if (inputDate.setHours(0, 0, 0, 0) == tomorrowDate.setHours(0, 0, 0, 0)) {
+                                    
+                                    var nextday_charge = <?= /* @noEscape */ $block->getNextdayDeliveryAmount(); ?>;
+                                    jQuery('[name="custom-fee"]').val(nextday_charge);
+                                    jQuery('.sameday-delivery').hide();
+                                    jQuery('.nextday-delivery').show();
+                                } else {
+                                    nocharge = 0;
+                                    jQuery('[name="custom-fee"]').val(nocharge);
+                                    jQuery('.sameday-delivery').hide();
+                                    jQuery('.nextday-delivery').hide();
+                                }
+                            }
+                        });
+                    } else {
+                        setTimeout(initMyLib, 2000);
+                    }
+                }
+                initMyLib(); 
+            });</script><?php } elseif ($block->getDeliveryType() == 2) { ?> <div id="store-container-main" style="display: none"><div class="store-container-inner"><div id="delivery-date-box"><label for="delivery-date"><?= /* @noEscape */ $block->getDeliveryDateLabel(); ?></label> <input class="field required" data-validate="{required:true}" placeholder="Select Delivery Date" readonly type="text" id="delivery-date-show" name="delivery_date_show" valueUpdate = "keyup" autocomplete="off" /><br> <span id="select-date" class="btnChoice"></span></div><div class="delivry-timeslot" style="display:none"><input class="field required" data-validate="{required:true}" placeholder="Select Delivery Date" readonly type="text" id="delivery-date" name="delivery_date" valueUpdate = "keyup" autocomplete="off" /><input class="field required" data-validate="{required:true}" placeholder="Delivery Timeslot" dataScope ="shippingAddress.delivery_timeslot" valueUpdate = "keyup" hasFocus = "focused" type="text" id="delivery-timeslot" name="delivery_timeslot" autocomplete="off" disabled="disable"/></div><?php $timeSlot = $block->getTimeSlot(); ?> <?php $classvar = ''; if ($timeSlot['maxtimeslot'] == 1) { $classvar = 'timeslot-column-one'; } elseif ($timeSlot['maxtimeslot'] == 2) { $classvar = 'timeslot-column-two'; } elseif ($timeSlot['maxtimeslot'] == 3) { $classvar = 'timeslot-column-three'; } if (count($timeSlot['timeslot']) < 5) { $classvar = $classvar . ' timeslot-row-five'; } ?> <table id="divChoices" style="display:none" class="<?= /* @noEscape */ $classvar; ?>"><thead><tr><th align="left" valign="middle"><div class="choices-header"><div class="timeslot-close">x</div><div class="choices-header-left-aria">Date</div><div class="choices-header-right-aria">Time Slots</div></div></th></tr></thead><tbody><tr><td><div id="parent"><table id="fixTable" class="table"><thead></thead><tbody><?php if ($timeSlot['maxtimeslot']) { ?> <?php foreach ($timeSlot['timeslot'] as $rows) { ?> <tr ><?php foreach ($rows as $column) { ?> <td time="<?= /* @noEscape */ $column['time'] ?>" date="<?= /* @noEscape */ $column['date'] ?>" class="<?= /* @noEscape */ ($column['is_enabel']) ? 'btnselect' : 'disabledtd'; ?>" value="<?= /* @noEscape */ $column['value'] ?>" <?= /* @noEscape */ ($column['price']) ? "price='" . $column['price'] . "'" : '' ?> ><?= /* @noEscape */ $column['label'] ?></td><?php } ?></tr><?php } ?> <?php } else { ?> <div class="no-slot"><?= /* @noEscape */ __('Sorry, Delivery time not available.'); ?></div><?php } ?></tbody><tfoot></tfoot></table></div></td></tr></tbody></table><div class="show-delivery-charge"></div><?php if ($block->isDeliveryMessageEnable()) { ?> <div class="addtional-message"><span><?= /* @noEscape */ $block->getDeliveryMessage(); ?></span></div><?php } ?> <div class="delivry-charge" style="display:none"><input class="field required" data-validate="{required:true}" placeholder="Delivery charge" dataScope ="shippingAddress.delivery_charge" valueUpdate = "keyup" hasFocus = "focused" type="text" id="custom_fee" name="custom-fee" autocomplete="off" disabled="disable"/></div><?php if ($block->getEnableDeliveryDateComment()) { ?> <div id="delivery-comment-box"><label for="delivery_comment"><?= /* @noEscape */ $block->getDeliveryDateCommentLabel(); ?></label> <textarea id="delivery-comment" name="delivery_comment" class = "field required" autocomplete="off" data-validate="{required:true}" dataScope ="shippingAddress.pickup_date" valueUpdate = "keyup" hasFocus = "focused" placeholder="Enter Comment"></textarea></div><?php } ?> <?php if ($block->isEnableCallmeBeforeDelivery()) { ?> <div id="callme_before_delivery"><input type="checkbox" name="delivery_call" value="Yes"> Call me before Delivery</div><?php } ?></div></div><script type="text/javascript">
+
+            require(['jquery', 'Magento_Catalog/js/price-utils', 'tableslotfixer', 'Magento_Checkout/js/view/shipping', 'mage/calendar'], function ($, priceUtils) {
+
+
+                var initMyLib = function () {
+                    if (jQuery('#checkout-shipping-method-load').length) {
+                        jQuery('.table-checkout-shipping-method').after("<tr class='row'><td colspan='4'>" + jQuery("#store-container-main").html() + "</td></tr>");
+                        jQuery("#store-container-main").html("");
+
+                        jQuery('.btnChoice, #delivery-date-show').on('click', function () {
+                            jQuery('#divChoices').show();
+                            jQuery('.btnselect').on('click', function () {
+                                date = $(this).parent().children(':first-child').attr('value');
+                                timeslot = $(this).attr('value');
+                                datetimeslot = date + ' : ' + timeslot;
+                                additionalfees = $(this).attr('price');
+                                $('td').removeClass('selected');
+                                $(this).addClass('selected');
+                                jQuery('#delivery-date-show').val(datetimeslot);
+                                jQuery('#delivery-date').val(date);
+                                jQuery('#delivery-timeslot').val(timeslot);
+                                jQuery('[name="custom-fee"]').val(additionalfees);
+                                if (additionalfees) {
+                                    jQuery('div.show-delivery-charge').html('<span>Delivery Charge: ' + priceUtils.formatPrice(additionalfees) + '</span>');
+                                } else {
+                                    jQuery('div.show-delivery-charge').text('');
+                                }
+                                ;
+                                jQuery('#divChoices').hide();
+                            })
+
+                            jQuery('.timeslot-close').on('click', function () {
+                                jQuery('#divChoices').hide();
+                            })
+                        })
+
+                        var addhour = <?= /* @noEscape */ $block->getTimeslotIntervalHour(); ?>;
+                        var date = new Date();
+                        var currenttime = Date.UTC(date.getFullYear()
+                                , date.getMonth()
+                                , date.getDate()
+                                , date.getHours() + addhour
+                                , date.getMinutes()
+                                , date.getSeconds()
+                                , date.getMilliseconds()
+                                );
+                       jQuery("td")
+                                .filter(function () {
+                                    
+                                    return ((jQuery(this).attr("time") < currenttime));
+                                })
+                               .addClass('disabledtd').removeClass('btnselect');
+
+                        jQuery("#fixTable").tableHeadFixer({'left': 1});
+                        
+                         var myObj = <?= /* @noEscape */ $block->getOffDate(); ?>;
+                        var starttime = <?= /* @noEscape */ $block->starttime();?> ;
+                        var modifier = starttime['start_time'].split(' ');
+                        var hours = modifier[0].split(':'); 
+                        var hour = hours[0];
+                        var minute = hours[1];
+                        if (hours[0] === '12') {
+                            hour = '0';
+                          }
+                        if (modifier[1] === 'PM') {
+                            hour = parseInt(hours, 10) + 12;
+                        }
+                        $.each(myObj, function(propName, propVal) {
+                            var dated = propVal.split('-');
+                            var dateoff = new Date(dated[2],dated[0]-1,dated[1]-1,hour,minute);
+                            var dateofftime = Date.UTC(dateoff.getFullYear()
+                                , dateoff.getMonth()
+                                , dateoff.getDate()
+                                , dateoff.getHours() + addhour
+                                , dateoff.getMinutes()
+                                , dateoff.getSeconds()
+                                , dateoff.getMilliseconds()
+                                );
+                        
+                         jQuery("td")
+                                .filter(function () {
+                                    return ((jQuery(this).attr("time") == dateofftime));
+                                })
+                               .addClass('disabledtd').removeClass('btnselect');
+                        });
+
+                    } else {
+                        setTimeout(initMyLib, 2000);
+                    }
+                }
+                initMyLib(); 
+            });</script><?php } ?> <script type="text/javascript">
+        var isScheduleShippingEnable = parseInt(<?= /* @noEscape */ $block->isScheduleShippingEnable(); ?>);
+        var isScheduleShippingEnableForCustomer = parseInt(<?= /* @noEscape */ $block->isScheduleShippingEnableForCustomer(); ?>);
+        var isDeliveryDateMandatory = parseInt(<?= /* @noEscape */ $block->IsDeliveryDateMandatory(); ?>);
+        var minimumorderamount = parseInt(<?= /* @noEscape */ $block->IsDeliveryDateMandatory(); ?>);</script><?php } else { ?> <script type="text/javascript">
+        var isScheduleShippingEnable = parseInt(<?= /* @noEscape */ $block->isScheduleShippingEnable(); ?>);
+        var isScheduleShippingEnableForCustomer = parseInt(<?= /* @noEscape */ $block->isScheduleShippingEnableForCustomer(); ?>);
+        var isDeliveryDateMandatory = parseInt(<?= /* @noEscape */ $block->IsDeliveryDateMandatory(); ?>);
+        var minimumorderamount = 0;</script><?php } ?>

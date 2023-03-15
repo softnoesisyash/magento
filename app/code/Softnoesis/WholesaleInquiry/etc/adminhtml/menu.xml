@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *Softnoesis Admin Grid MenuSoftware
+ *
+ * @category    Softnoesis
+ * @package     Softnoesis_Grid
+ * @author      Softnoesis Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Softnoesis_Grid::manager" title="Softnoesis" module="Softnoesis_WholesaleInquiry" sortOrder="10" resource="Softnoesis_Grid::manager"/>
+        <add id="Softnoesis_Grid::add_row" title="MetaCategory" module="Softnoesis_WholesaleInquiry" sortOrder="20" parent="Softnoesis_Grid::manager" action="grid/grid" resource="Softnoesis_Grid::add_row"/>
+    </menu>
+</config>

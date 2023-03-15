@@ -1,0 +1,72 @@
+"Sort","Trier"
+"From Day","De Jour"
+"From Month","De mois"
+"From Year","A partir de l'année"
+"To Day","Aujourd'hui"
+"To Month","Pour Mois"
+"To Year","Pour l'année"
+"Add Rule","Ajouter une règle"
+"Day","journée"
+Month,Mois
+Year,An
+"Start Time","Heure de départ"
+"End Time","Heure de fin"
+Price,Prix
+"Time Slot","Créneau horaire"
+"Delivery Charge","Frais de livraison"
+"Delivery Information","Informations de livraison"
+"Delivery Charges: ","Frais de livraison: "
+"Delivery Comment: ","Livraison Commentaire:"
+"Custom Fee","Frais de douane"
+"No Day","No Day"
+Sunday,dimanche
+Monday,Lundi
+Tuesday,Mardi
+Wedenesday,Wedenesday
+Thursday,Jeudi
+Friday,Vendredi
+Saterday,saterday
+"Calender View","Calender View"
+"TimeSlot View","Timeslot View"
+"Delivery Date : %1","Date de livraison:% 1"
+"Delivery Time: %1","Délai de livraison: 1%"
+"Delivery Comment : %1.","Livraison Commentaire:% 1."
+"Delivery Charge : %1","Frais de livraison:% 1"
+"Call before Delivery : %1","Appelez avant Livraison:% 1"
+"Delivery Date: ","Date de livraison: "
+"Call before delivery: Yes","Appel avant la livraison: Oui"
+"Delivery Comment: %1","Livraison Commentaire:% 1"
+ID,ID
+"Customer Name","Nom du client"
+"Delivery Date","Date de livraison"
+Status,statut
+"Grand Total","Somme finale"
+"Delivery Date & Time","Date et heure de livraison"
+"Call Before Delivery","Appelez avant livraison"
+"Delivery Comment","Livraison Commentaire"
+"Same-Day Delivery Charge: ","Same-Day Frais de livraison:"
+"Next-Day Delivery Charge: ","Next-Day Frais de livraison:"
+"Select Date","Sélectionner la date"
+"Your next scheduled order delivery is/are as below: ","Votre livraison de la commande suivante prévue est / sont comme ci-dessous:"
+"Save Address","Enregistrer Adresse"
+Cancel,Annuler
+Magedelight,Magedelight
+General,Général
+"Enable ScheduleShipping","Activer ScheduleShipping"
+"Comment for `Enable ScheduleShipping` setting.","Commentaire pour` Activer paramètre ScheduleShipping`. "
+"Make Delivery Date Mandatory","Faire Date de livraison obligatoire"
+"Select Yes to make Delivery date mandatory for customers.","Sélectionnez Oui pour rendre la date de livraison obligatoire pour les clients."
+"Enable Delivery Comment","Activer livraison Commentaire"
+"Enable Call Me Before Delivery","Activer Call Me Avant livraison"
+"Select Yes to Show option for call Functionality.","Sélectionnez Oui pour afficher l'option pour la fonctionnalité d'appel."
+"Show Additional Info","Afficher les infos supplémentaires"
+"Do you want email notification ?","«Voulez-vous une notification par email?"
+"Send Reminder Of Occurrence Before","Envoyer Rappel de l'événement Avant"
+"Email Notification Id","Notification par email Id"
+"Calender view Management","Vue Calender Management"
+"Show Delivery Schedule in","Show Schedule Livraison"
+"Enable Time In Calender","Activer Time In Calender"
+"Show time in calender.","Afficher l'heure en calendrier."
+"Same Day Delivery","Livraison Same Day"
+"Next Delivery","Next Delivery"
+"Day Off","Jour de congé"

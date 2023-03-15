@@ -1,0 +1,72 @@
+Sort,Soort
+"From Day","Vanaf de eerste dag"
+"From Month","Van Month"
+"From Year","From Year"
+"To Day","To Day"
+"To Month","To Month"
+"To Year","To Year"
+"Add Rule","Regel toevoegen"
+Day,Dag
+Month,Maand
+Year,Jaar
+"Start Time","Starttijd"
+"End Time","Eindtijd"
+"Price","Prijs"
+"Time Slot","Time Slot"
+"Delivery Charge","Bezorgkosten"
+"Delivery Information","Information Delivery"
+"Delivery Charges: ","Verzendkosten: "
+"Delivery Comment: ","Delivery Commentaar:"
+"Custom Fee","Aangepast Fee"
+"No Day","No Day"
+Sunday,zondag
+Monday,maandag
+Tuesday,dinsdag
+Wedenesday,Wedenesday
+Thursday,donderdag
+Friday,vrijdag
+Saterday,zaterdag
+"Calender View","Calender View"
+"TimeSlot View","TimeSlot View"
+"Delivery Date : %1","Verschijningsdatum:% 1"
+"Delivery Time: %1","Levertijd:% 1"
+"Delivery Comment : %1.","Levering Commentaar:% 1."
+"Delivery Charge : %1","Levertijd:% 1"
+"Call before Delivery : %1","Bel voor Levering:% 1"
+"Delivery Date: ","Bezorgdatum: "
+"Call before delivery: Yes","Oproep voor de levering: Yes"
+"Delivery Comment: %1","Levering Commentaar:% 1"
+ID,ID
+"Customer Name","Klantnaam"
+"Delivery Date","Bezorgdatum"
+"Status","toestand"
+"Grand Total","Eindtotaal"
+"Delivery Date & Time","Delivery Date & Time"
+"Call Before Delivery","Call Voordat Delivery"
+"Delivery Comment","Delivery Comment"
+"Same-Day Delivery Charge: ","Same-Day Delivery Charge:"
+"Next-Day Delivery Charge: ","Next-Day Delivery Charge:"
+"Select Date","Select Date"
+"Your next scheduled order delivery is/are as below: ","Uw volgende geplande levering van bestellingen is / zijn als volgt:"
+"Save Address","Save Address"
+Cancel,Annuleer
+Magedelight,Magedelight
+General,Algemeen
+"Enable ScheduleShipping","Enable ScheduleShipping"
+"Comment for `Enable ScheduleShipping` setting.","Opmerkingen voor` ScheduleShipping` instelling inschakelen. "
+"Make Delivery Date Mandatory","Maak Delivery Date Verplicht"
+"Select Yes to make Delivery date mandatory for customers.","Kies Ja om Delivery datum verplicht voor klanten."
+"Enable Delivery Comment","Enable Delivery Comment"
+"Enable Call Me Before Delivery","Enable Call Me Voor de bevalling"
+"Select Yes to Show option for call Functionality.","Kies Ja optie voor call functionaliteit tonen."
+"Show Additional Info","Show Extra informatie"
+"Do you want email notification ?","Wil je e-mailbericht? "
+"Send Reminder Of Occurrence Before","Stuur herinnering van optreden Before"
+"Email Notification Id","E-mail Notification Id"
+"Calender view Management","Calender view Management"
+"Show Delivery Schedule in","Toon Delivery Schedule in"
+"Enable Time In Calender","Enable Time In Calender"
+"Show time in calender.","Toon tijd in kalender."
+"Same Day Delivery","Same Day Delivery"
+"Next Delivery","Next Delivery"
+"Day Off","Vrije dag"

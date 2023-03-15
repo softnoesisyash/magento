@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2016 Magedelight <info@magedelight.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @category Magedelight
+ * @package Magedelight_ScheduleShipping
+ * @copyright Copyright (c) 2016 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magedelight_ScheduleShipping>
+            <general>
+                <enable>0</enable>
+                <deleverydate_label>Select Delivery Date</deleverydate_label>
+                <deliverydate_mandatory>1</deliverydate_mandatory>
+                <deliverycharge_label>Delivery Charge</deliverycharge_label>
+                <show_deliverycomment>1</show_deliverycomment>
+                <deliverycomment_label>Delivery Comment</deliverycomment_label>
+                <callme_before_delivery>1</callme_before_delivery>
+                <additional_info>1</additional_info>
+                <additionalinfo_text>Sunday delivery not available</additionalinfo_text>
+                <enable_emailnotification>0</enable_emailnotification>                
+                <customer_groups>0,1,2,3</customer_groups>
+            </general>
+            <calender_view>
+                <delivery_type>1</delivery_type>
+                <show_time>1</show_time>                
+                <deliverydays>3</deliverydays>
+                <sameday>0</sameday>
+                <nextday>0</nextday>
+                <maximum_quota_day>0</maximum_quota_day>
+                <maximum_quota_time>0</maximum_quota_time>
+            </calender_view>
+            <timeslot>
+                <deliverydays>6</deliverydays>
+                <deliveryhours>24</deliveryhours>
+            </timeslot>
+        </magedelight_ScheduleShipping>
+    </default>
+</config>

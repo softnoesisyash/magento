@@ -1,0 +1,282 @@
+#select-date{border: 1px solid #ccc;padding: 15px 20px;position: absolute; background: #fff url(../Magedelight_ScheduleShipping/images/bottom-arrow.png) no-repeat center center; cursor: pointer;
+
+}
+#delivery-date-show{float: left}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+    float:left;
+    background: #900;
+    display: none;
+}
+#divChoices{ margin-top: 66px; font-size: 11px; position: absolute; z-index: 99999; 
+             background: #fff; 
+             border: 1px solid #ccc; box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+
+             thead { 
+                 tr { 
+                     th { border-left: #c9c9c9 solid 1px; border-bottom: 1px solid #c9c9c9; padding: 0; font-size: 15px; 
+                          .choices-header { width: 100%; box-sizing: border-box; padding: 0 0 0 0; background: #fff;
+                                            .choices-header-left-aria { width: 160px; display: block; float: left; border-right: #ccc solid 1px; 
+                                                                        background: #ddd; padding: 11px 10px; box-sizing: border-box;
+                                            }
+
+                                            .choices-header-right-aria { width: 698px;background: #fff; float: left; padding: 11px 12px 11px 10px; box-sizing: border-box; text-align: center;
+
+                                            }
+                                            .timeslot-close {   
+
+                                                background: #333333;
+                                                border-radius: 28px;
+                                                color: #ffffff;
+                                                float: right;
+                                                font-size: 18px;
+                                                font-weight: normal;
+                                                height: 24px;
+                                                line-height: 22px;
+                                                padding: 0 0 0 1px; cursor: pointer;
+                                                text-align: center;
+                                                margin: -14px -11px -16px 0; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+                                                width: 23px; 
+                                                &:hover {background: #1979c3;}
+
+                                            }
+                          }
+                     }
+                 }
+             }
+             tbody {
+                 tr {
+                     td {   padding: 0; 
+
+
+                            .table {
+                                tr { border-bottom:1px solid #cccccc;
+                                     td {white-space: nowrap; padding: 10px; font-size: 13px; border-top: 0; background: #fff;}
+                                }
+                            }
+
+
+
+                     }
+                 } 
+             }
+
+
+
+             #parent {
+                 height: 214px; width: 874px;
+             }
+
+             #fixTable {
+                 width: auto !important;
+                 tr {
+                     td{
+                         &:first-child { padding: 10px!important; color: #333!important; font-weight: 600; cursor: inherit!important; float: left; background: #ddd!important; width: 140px!important;}
+                         &.disabledtd {background: #ddd!important; cursor: no-drop; color: #999;}
+                         &.btnselect { cursor: pointer;
+                                       &:hover { background:#1979c3; color: #fff; }
+                         }
+                         &.btnselect.selected { background: #168800; color: #fff;}
+
+
+                     }
+                 }
+             }
+             .no-slot {
+                 font-size: 14px;
+                 padding: 20px;
+                 text-align: center;
+             }
+
+}
+
+#divChoices.timeslot-row-five {
+    #parent { height: auto; }
+}
+#divChoices.timeslot-column-three { width: auto;
+
+                                    thead {
+                                        tr {
+                                            th {
+                                                .choices-header {
+                                                    .choices-header-right-aria { width: 516px; }
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                    #parent { width: 690px; }
+}
+#divChoices.timeslot-column-two { width: auto;
+
+                                  thead {
+                                      tr {
+                                          th {
+                                              .choices-header {
+                                                  .choices-header-right-aria { width: 342px; }
+                                              }
+                                          }
+
+                                      }
+                                  }
+                                  #parent { width: 516px; }
+}
+#divChoices.timeslot-column-one { width: auto;
+
+                                  thead {
+                                      tr {
+                                          th {
+                                              .choices-header {
+                                                  .choices-header-right-aria { width: 160px; }
+                                              }
+                                          }
+
+                                      }
+                                  }
+                                  #parent { width: 334px; }
+}
+
+
+
+.store-container-inner {
+    #delivery-date-box { margin: 0 0 10px 0; clear: both; float: left; width: 100%;
+                         label {line-height: 30px;}
+                         #delivery-date-show { width: 87%; }
+    }		
+
+    .show-delivery-charge {
+        span {
+            background: #f2f2f2 none repeat scroll 0 0;
+            clear: both; display: block;
+            color: #333333;
+            font-weight: bold;
+            margin: 0 0 10px;
+            padding: 10px;
+        }
+    }
+
+    .sameday-delivery.delivery {margin:10px 0;}
+    .addtional-message { padding: 10px 14px; margin: 0 0 10px 0; clear: both; background:#faf8e7; border:1px solid #fbdf78;  
+                         line-height: 22px; font-size: 14px; color: #6f4400;  
+                         &:before {
+                             background: #325e05;
+                             content: '\e60c';
+                             font-family: 'luma-icons';
+                             margin: 0 6px 0 0; background: #325e05; border-radius: 100px; padding: 2px;
+                             font-size: 16px; color: #fff;
+                             vertical-align: top; line-height: 22px;
+                         }
+    }
+    #delivery-comment-box {
+        label {line-height: 30px;}
+    }
+}
+
+
+
+@media only screen and (max-width: (@screen__l - 24)) {
+    #divChoices{
+        thead { 
+            tr { 
+                th { 
+                    .choices-header {
+
+                        .choices-header-right-aria { width: 538px; }
+
+
+
+                    }
+                }
+            }
+        }
+
+        #parent { width: 740px; }	
+    }
+}
+@media only screen and (max-width: (@screen__m + 24)) {
+    #divChoices{
+        #parent { width: 714px; }	
+    }
+}
+
+
+
+@media only screen and (max-width: (@screen__m - 1)) {
+    #divChoices{ width: auto; 
+                 thead { 
+                     tr { 
+                         th { 
+                             .choices-header {
+
+                                 .choices-header-right-aria { width: 440px; }
+
+
+
+                             }
+                         }
+                     }
+                 }
+
+                 #parent { width: 608px; }	
+
+    }
+}
+
+@media only screen and (max-width: (@screen__s)) {
+    #divChoices{ 
+        thead { 
+            tr { 
+                th { 
+                    .choices-header {
+                        .choices-header-left-aria { width: 160px;}
+                        .choices-header-right-aria { width: 280px; }
+
+
+
+                    }
+                }
+            }
+        }
+
+        #parent { width: 448px; }	
+        #fixTable {
+
+            tr {
+                td{
+                    &:first-child {width: 140px!important;}
+
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: (@screen__xs)) {
+    #divChoices{ 
+        thead { 
+            tr { 
+                th { 
+                    .choices-header {
+                        .choices-header-left-aria { width: 122px;}
+                        .choices-header-right-aria { width: 166px; }
+
+
+
+                    }
+                }
+            }
+        }
+
+        #parent { width: 290px; }	
+        #fixTable {
+
+            tr {
+                td{
+                    &:first-child {width: 100px!important;}
+
+                }
+            }
+        }
+    }
+}
+
+

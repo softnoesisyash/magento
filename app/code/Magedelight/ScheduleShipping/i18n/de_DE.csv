@@ -1,0 +1,72 @@
+Sort,Sortieren
+"From Day","Vom ersten Tag"
+"From Month","Von Monat"
+"From Year","Von Jahr"
+"To Day","To Day"
+"To Month","To Monats"
+"To Year","To Year"
+"Add Rule","Regel hinzufügen"
+Day,Tag
+Month,Monat
+Year,Jahr
+"Start Time","Startzeit"
+"End Time","Endzeit"
+Price,Preis
+"Time Slot","Time Slot"
+"Delivery Charge","Delivery Charge"
+"Delivery Information","Versandinformationen"
+"Delivery Charges: ","Versandkosten: "
+"Delivery Comment: ","Delivery Kommenta: "
+"Custom Fee","Custom Fee"
+"No Day","No Day"
+Sunday,Sonntag
+Monday,Montag
+Tuesday,Dienstag
+Wedenesday,Wedenesday
+Thursday,Donnerstag
+Friday,Freitag
+Saterday,Saterday
+"Calender View","Kalender anzeigen"
+"TimeSlot View","TimeSlot View"
+"Delivery Date : %1","Liefertermin:% 1"
+"Delivery Time: %1","Lieferzeit:% 1"
+"Delivery Comment : %1.","Delivery. Bemerkung:% 1"
+"Delivery Charge : %1","Liefergebühr:% 1"
+"Call before Delivery : %1","Rufen Sie vor Lieferung:% 1"
+"Delivery Date: ","Lieferdatum: "
+"Call before delivery: Yes","Rufen Sie vor der Auslieferung: Ja"
+"Delivery Comment: %1","Delivery Kommentar:% 1"
+ID,"ICH WÜRDE"
+"Customer Name","Kundenname"
+"Delivery Date","Lieferdatum"
+Status,Status
+"Grand Total","Gesamtsumme"
+"Delivery Date & Time","Delivery Date & Time"
+"Call Before Delivery","Call Vor Anlieferung"
+"Delivery Comment","Delivery Comment"
+"Same-Day Delivery Charge: ","Same-Day Verzollung"
+"Next-Day Delivery Charge: ","Next-Day Verzollung"
+"Select Date","Select Date"
+"Your next scheduled order delivery is/are as below: ","Ihre nächste geplante Lieferung von Bestellungen ist / sind wie folgt:"
+"Save Address","Save-Adresse"
+Cancel,Stornieren
+Magedelight,Magedelight
+General,General
+"Enable ScheduleShipping","Enable ScheduleShipping"
+"Comment for `Enable ScheduleShipping` setting.","Kommentar für` ScheduleShipping` Einstellung aktivieren ".
+"Make Delivery Date Mandatory","Make Liefertermin Obligatorisch"
+"Select Yes to make Delivery date mandatory for customers.","Wählen Sie Ja, um Liefertermin verbindlich für Kunden zu machen."
+"Enable Delivery Comment","Enable Lieferung Comment"
+"Enable Call Me Before Delivery","Enable Me vor der Auslieferung anrufen"
+"Select Yes to Show option for call Functionality.","Ja Wählen Sie Option, um für Aufruf Funktionalität."
+"Show Additional Info","Show Zusätzliche Informationen"
+"Do you want email notification ?","Haben Sie E-Mail-Benachrichtigung wünschen?"
+"Send Reminder Of Occurrence Before","Send Erinnerung Auftritts Before"
+"Email Notification Id","E-Mail-Benachrichtigung Id"
+"Calender view Management","Kalenderansicht Management"
+"Show Delivery Schedule in","Lieferplan in"
+"Enable Time In Calender","Enable Time In Calender"
+"Show time in calender.","Zeit in Kalender anzeigen."
+"Same Day Delivery","Same Day Delivery"
+"Next Delivery","Nächste Lieferung"
+"Day Off","Freier Tag"

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Softnoesis
+ * Copyright(C) 03/2023 Softnoesis <ideveloper1990@gmail.com>
+ * @package Softnoesis_Sitemapexclusion
+ * @copyright Copyright(C) 2015 Softnoesis (ideveloper1990@gmail.com)
+ * @author Softnoesis <ideveloper1990@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sitemap\Model\ItemProvider\Category" type="Softnoesis\Sitemapexclusion\Model\ItemProvider\Category"/>
+    <preference for="Magento\Sitemap\Model\ItemProvider\Product" type="Softnoesis\Sitemapexclusion\Model\ItemProvider\Product"/>
+    <preference for="Magento\Sitemap\Model\ItemProvider\CmsPage" type="Softnoesis\Sitemapexclusion\Model\ItemProvider\CmsPage"/>
+</config>

@@ -1,0 +1,72 @@
+Sort,Sort
+"From Day","From Day"
+"From Month","From Month"
+"From Year","From Year"
+"To Day","To Day"
+"To Month","To Month"
+"To Year","To Year"
+"Add Rule","Add Rule"
+Day,Day
+Month,Month
+Year,Year
+"Start Time","Start Time"
+"End Time","End Time"
+Price,Price
+"Time Slot","Time Slot"
+"Delivery Charge","Delivery Charge"
+"Delivery Information","Delivery Information"
+"Delivery Charges: ","Delivery Charges: "
+"Delivery Comment: ","Delivery Comment: "
+"Custom Fee","Custom Fee"
+"No Day","No Day"
+Sunday,Sunday
+Monday,Monday
+Tuesday,Tuesday
+Wedenesday,Wedenesday
+Thursday,Thursday
+Friday,Friday
+Saterday,Saterday
+"Calender View","Calender View"
+"TimeSlot View","TimeSlot View"
+"Delivery Date : %1","Delivery Date : %1"
+"Delivery Time: %1","Delivery Time: %1"
+"Delivery Comment : %1.","Delivery Comment : %1."
+"Delivery Charge : %1","Delivery Charge : %1"
+"Call before Delivery : %1","Call before Delivery : %1"
+"Delivery Date: ","Delivery Date: "
+"Call before delivery: Yes","Call before delivery: Yes"
+"Delivery Comment: %1","Delivery Comment: %1"
+ID,ID
+"Customer Name","Customer Name"
+"Delivery Date","Delivery Date"
+Status,Status
+"Grand Total","Grand Total"
+"Delivery Date & Time","Delivery Date & Time"
+"Call Before Delivery","Call Before Delivery"
+"Delivery Comment","Delivery Comment"
+"Same-Day Delivery Charge: ","Same-Day Delivery Charge: "
+"Next-Day Delivery Charge: ","Next-Day Delivery Charge: "
+"Select Date","Select Date"
+"Your next scheduled order delivery is/are as below: ","Your next scheduled order delivery is/are as below: "
+"Save Address","Save Address"
+Cancel,Cancel
+Magedelight,Magedelight
+General,General
+"Enable ScheduleShipping","Enable ScheduleShipping"
+"Comment for `Enable ScheduleShipping` setting.","Comment for `Enable ScheduleShipping` setting."
+"Make Delivery Date Mandatory","Make Delivery Date Mandatory"
+"Select Yes to make Delivery date mandatory for customers.","Select Yes to make Delivery date mandatory for customers."
+"Enable Delivery Comment","Enable Delivery Comment"
+"Enable Call Me Before Delivery","Enable Call Me Before Delivery"
+"Select Yes to Show option for call Functionality.","Select Yes to Show option for call Functionality."
+"Show Additional Info","Show Additional Info"
+"Do you want email notification ?","Do you want email notification ?"
+"Send Reminder Of Occurrence Before","Send Reminder Of Occurrence Before"
+"Email Notification Id","Email Notification Id"
+"Calender view Management","Calender view Management"
+"Show Delivery Schedule in","Show Delivery Schedule in"
+"Enable Time In Calender","Enable Time In Calender"
+"Show time in calender.","Show time in calender."
+"Same Day Delivery","Same Day Delivery"
+"Next Delivery","Next Delivery"
+"Day Off","Day Off"

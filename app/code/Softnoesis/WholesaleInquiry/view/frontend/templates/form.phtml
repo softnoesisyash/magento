@@ -1,0 +1,145 @@
+<?php
+    // $collection = $block->getLatestid();
+    // echo $collection;
+    // // foreach($collection as $item){
+    // //     echo $item->getId();
+    // // }
+    // die();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry Form</title>
+    <style>
+    .label-verify {
+    /* Other styling... */
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}
+    </style>
+    <!-- <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <form method="POST" id="wholesale-form" action="<?php echo $block->getBaseUrl().'wholesale/index/success'?>" data-mage-init='{"validation":{}}'>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="" data-validate="{required:true, minlength:3, maxlength:33 ,'no-whitespace':true, 'letters-only':true}"
+        data-msg-required="First Name must be between 3 to 33 character"><br><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="" data-validate="{required:true, minlength:3, maxlength:33 ,'no-whitespace':true, 'letters-only':true}"
+        data-msg-required="Last Name must be between 3 to 33 character"><br><br>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" value="" data-validate="{required:true,'validate-email':true, 'no-whitespace':true}"
+        data-msg-required="Please enter valid email"><br><br>
+        <label for="phone">Mobile Number</label><br>
+        <input type="number" id="phone" name="phone" value="" data-validate="{required:true, minlength:8, maxlength:11,'no-whitespace':true,'validate-number':true }"
+        data-msg-required="Phone number must be between 8 and 11 digit"><br><br>
+        <label for="comment">Comments</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50" data-validate="{required:true, 'validate-no-empty':true}" data-msg-required="Please give your valuable feedback"></textarea>  <br>       
+        <item name="notice" xsi:type="string" translate="true">Some note</item><br>
+        <p id="email-sent-message"></p>
+        <button type="button" id="inquiry-form">Verify Email</button> <br>
+        <div class="verify-otp-div">
+            <label for="verify-otp">OTP </label>
+            <input name="verify-otp" id="verify-otp" />
+            <button type="button" name="verify-otp-btn" id="verify-otp-btn">Submit </button>
+            <button type="button" name="resend-btn" id="resend-btn">Resend </button>
+        </div>
+        <span id="success_message">Email Verified Successfully</span>
+        <span id="failure_message">Incorrect OTP</span>
+    </form> 
+</body>
+</html>
+<script>
+    requirejs(['jquery'], function($) {
+$(document).ready(function(){
+	$("#success_message").hide();
+	$("#failure_message").hide();
+	$(".verify-otp-div").hide();
+    $("#inquiry-form").on('click', function(){
+        $fname = $("#fname").val();
+        $lname = $("#lname").val();
+        $email = $("#email").val();
+        $phone_no = $("#phone").val();
+        $comment = $("#comment").val();
+        $customurl = "<?php echo $block->getBaseUrl().'wholesale/index/result'?>";
+        // console.log($customurl);
+        $.ajax({
+                url: $customurl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    email: $email,
+                    fname: $fname,
+                    lname: $lname,
+                    phone: $phone_no,
+                    comment: $comment
+                },
+                complete : function(response){
+                    $status = response.responseJSON.status;
+                    console.log($status);
+                    if($status == '1'){
+                    $(".verify-otp-div").show();
+                    $("#inquiry-form").hide();
+
+
+                    $("#resend-btn").on('click', function(){
+                        $.ajax({
+                            url: $customurl,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                email: $email,
+                                fname: $fname,
+                                lname: $lname,
+                                phone: $phone_no,
+                                comment: $comment
+                            },
+                        })
+                    });
+
+                    $("#verify-otp-btn").on('click', function(){
+                        // console.log("verify btn clicked");
+                        $otpvalue = $("#verify-otp").val();
+                        // console.log($otpvalue);
+                        $customurl_verify = "<?php echo $block->getBaseUrl().'wholesale/index/verify'?>";
+                        $.ajax({
+                            url: $customurl_verify,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                otp: $otpvalue,
+                            },
+                            complete: function(response){
+                                // console.log("in submit reponse");
+                                $("#email-sent-message").html("Email sent on");
+                                $otppassed = response.responseJSON.otppassed;
+                                if($otppassed == $otpvalue){
+	                                $("#failure_message").hide();
+	                                $("#success_message").show();
+                                    $("#wholesale-form").submit();
+                                }
+                                else{
+	                                $("#success_message").hide();
+	                                $("#failure_message").show();
+                                }
+                            }
+                        })
+                    })
+                    }
+                    else{
+                    console.log(response.responseJSON.message);
+                    }
+                }
+            });
+    });
+});
+});
+</script>

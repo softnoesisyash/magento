@@ -1,0 +1,27 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1678875714;s:6:"expire";i:1678962114;s:4:"tags";s:150:"e2a_BLOCK_HTML,e2a_CAT_P_45,e2a_CAT_P,e2a_CAT_P_26,e2a_CAT_P_29,e2a_CAT_P_32,e2a_CAT_P_21,e2a_CAT_P_33,e2a_CAT_P_34,e2a_CAT_P_35,e2a_CAT_P_22,e2a_MAGE";}
+<div class="price-box price-final_price" data-role="priceBox" data-product-id="45" data-price-box="product-id-45">
+            <p class="price-from">
+            
+
+<span class="price-container price-final_price&#x20;tax&#x20;weee"
+        >
+            <span class="price-label">From</span>
+        <span  id="old-price-45-widget-product-grid"                data-price-amount="61"
+        data-price-type="minPrice"
+        class="price-wrapper "
+    ><span class="price">$61.00</span></span>
+        </span>
+                    </p>
+        <p class="price-to">
+            
+
+<span class="price-container price-final_price&#x20;tax&#x20;weee"
+        >
+            <span class="price-label">To</span>
+        <span  id="old-price-45-widget-product-grid"                data-price-amount="77"
+        data-price-type="maxPrice"
+        class="price-wrapper "
+    ><span class="price">$77.00</span></span>
+        </span>
+                    </p>
+    </div>

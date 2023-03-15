@@ -1,0 +1,9 @@
+<?php
+$SetRedirectStatus = $block->SetRedirectStatus();
+if ($SetRedirectStatus == 'Yes') {
+    $redirectfacatery = \Magento\Framework\App\ObjectManager::getInstance();
+    $redirect = $redirectfacatery->get('\Magento\Framework\App\Response\Http');
+    $redirect->setStatusHeader(410, '1.1', 'Gone');
+    $redirect->setHeader('Status', '410');
+}
+?>

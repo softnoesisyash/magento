@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Softnoesis
+ * Copyright(C) 03/2023 Softnoesis <ideveloper1990@gmail.com>
+ * @package Softnoesis_Sitemapexclusion
+ * @copyright Copyright(C) 2015 Softnoesis (ideveloper1990@gmail.com)
+ * @author Softnoesis <ideveloper1990@gmail.com>
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<!-- cms_page table starts. -->
+	<table name="cms_page" resource="default" engine="innodb" comment="Primary table of cms_page that stores information cms_page, contact number and website details.">
+		<column xsi:type="int" name="sitemap_exclude" nullable="true" comment="sitemap_exclude" />
+	</table>
+	<!-- cms_page table ends. -->
+</schema>

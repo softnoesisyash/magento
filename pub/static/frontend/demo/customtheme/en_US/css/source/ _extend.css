@@ -1,0 +1,6 @@
+/** extend parent styles test */
+/** import styles test */
+h1 {
+  font-size: 72px !important;
+  color: #000080 !important;
+}

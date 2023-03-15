@@ -1,0 +1,65 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2016 Magedelight <info@magedelight.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @category Magedelight
+ * @package Magedelight_ScheduleShipping
+ * @copyright Copyright (c) 2016 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<section class="admin__page-section order-view-billing-shipping delinfo">
+    <div class="admin__page-section-title">
+        <span class="title"><?php echo __('Delivery Information') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-payment-method">
+            <div class="admin__page-section-item-content">
+                <div class="order-payment-method-title"><?php echo __('Delivery Date : %1', $block->getDeliveryDate()) ?></div>
+                <?php if ($block->getDeliveryTimeslot()) { ?>
+                    <div>
+                        <?php echo __('Delivery Time: %1', $block->getDeliveryTimeslot()); ?>
+                    </div>      
+                <?php } ?>
+
+                <div class="order-payment-currency">
+                    <?php if ($block->getDeliveryComment()) { ?>
+                        <?php echo __('Delivery Comment : %1.', $block->getDeliveryComment()) ?>
+                    <?php } else { ?>
+                        <?php echo __('Delivery Comment : %1.', 'N/A') ?>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="box box-order-shipping-method">
+            <div class="admin__page-section-item-content">
+                <div class="order-payment-method-title">
+                    <?php if ($block->getDeliveryFee()) { ?>
+                        <?php $deliveryFee = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($block->getDeliveryFee(), 2), true, false); ?>
+                        <?php echo __('Delivery Charge : %1', $deliveryFee) ?>
+                    <?php } else { ?>
+                        <?php echo __('Delivery Charge : %1', 'N/A') ?>
+                    <?php } ?>
+                </div>
+                <div class="order-payment-currency"><?php echo __('Call before Delivery : %1', $block->getDeliveryCall()) ?></div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,286 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1678875714;s:6:"expire";i:1678962114;s:4:"tags";s:176:"e2a_CAT_P,e2a_BLOCK_HTML,e2a_CAT_P_14,e2a_CAT_P_15,e2a_CAT_P_45,e2a_CAT_P_26,e2a_CAT_P_29,e2a_CAT_P_32,e2a_CAT_P_21,e2a_CAT_P_33,e2a_CAT_P_34,e2a_CAT_P_35,e2a_CAT_P_22,e2a_MAGE";}
+        <div class="block widget block-products-list grid">
+                <div class="block-content">
+            <!-- new_products_content_widget_grid-->            <div class="products-grid grid">
+                <ol class="product-items widget-product-grid">
+                                                                <li class="product-item">                        <div class="product-item-info">
+                            <a href="http://localhost/magento245p1/pub/default/push-it-messenger-bag.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-14">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo"
+                        src="http://localhost/magento245p1/pub/media/catalog/product/cache/4139e9dea4a926acb715096a8edd0db5/w/b/wb04-blue-0.jpg"
+            loading="lazy"
+            width="240"
+            height="300"
+            alt="Push&#x20;It&#x20;Messenger&#x20;Bag"/></span>
+</span>
+<style>.product-image-container-14 {
+    width: 240px;
+}
+.product-image-container-14 span.product-image-wrapper {
+    padding-bottom: 125%;
+}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-14");
+for (var i = 0; i < prodImageContainers.length; i++) {
+    prodImageContainers[i].style.width = "240px";
+}
+prodImageContainersWrappers = document.querySelectorAll(
+    ".product-image-container-14  span.product-image-wrapper"
+);
+for (var i = 0; i < prodImageContainersWrappers.length; i++) {
+    prodImageContainersWrappers[i].style.paddingBottom = "125%";
+}</script>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Push It Messenger Bag"
+                                       href="http://localhost/magento245p1/pub/default/push-it-messenger-bag.html"
+                                       class="product-item-link">
+                                        Push It Messenger Bag                                    </a>
+                                </strong>
+                                                                            <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result"
+                 id="rating-result_14"
+                 title="67%">
+                <span><span>67%</span></span>
+            </div>
+            <script type="text&#x2F;javascript">var elemW0T5RttS = document.querySelector('#rating-result_14 span');
+if (elemW0T5RttS) {
+elemW0T5RttS.style.width = '67%';
+}</script>        </div>
+                <div class="reviews-actions">
+            <a class="action view"
+               href="http://localhost/magento245p1/pub/default/push-it-messenger-bag.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="14" data-price-box="product-id-14">
+    
+
+<span class="price-container price-final_price&#x20;tax&#x20;weee"
+        >
+        <span  id="old-price-14-widget-product-grid"                data-price-amount="45"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+    ><span class="price">$45.00</span></span>
+        </span>
+
+</div>
+                                
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="24-WB04" action="http://localhost/magento245p1/pub/default/checkout/cart/add/uenc/aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s/product/14/" method="post">
+                                                            <input type="hidden" name="product" value="14">
+                                                            <input type="hidden" name="uenc" value="aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0RvdkwyeHZZMkZzYUc5emRDOXRZV2RsYm5Sdk1qUTFjREV2Y0hWaUwyUmxabUYxYkhRdloyVmhjaTVvZEcxcy9wcm9kdWN0LzE0Lw,,">
+                                                            <input name="form_key" type="hidden" value="3ZjkiobIKSLXWajc" />                                                            <button type="submit"
+                                                                    title="Add to Cart"
+                                                                    class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </form>
+                                                                                                    </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#"
+                                                           data-post='{"action":"http:\/\/localhost\/magento245p1\/pub\/default\/wishlist\/index\/add\/","data":{"product":14,"uenc":"aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s"}}' class="action towishlist" data-action="add-to-wishlist" title="Add&#x20;to&#x20;Wish&#x20;List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post='{"action":"http:\/\/localhost\/magento245p1\/pub\/default\/catalog\/product_compare\/add\/","data":{"product":"14","uenc":"aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s"}}' title="Add&#x20;to&#x20;Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://localhost/magento245p1/pub/default/affirm-water-bottle.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-15">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo"
+                        src="http://localhost/magento245p1/pub/media/catalog/product/cache/4139e9dea4a926acb715096a8edd0db5/u/g/ug06-lb-0.jpg"
+            loading="lazy"
+            width="240"
+            height="300"
+            alt="Affirm&#x20;Water&#x20;Bottle&#x20;"/></span>
+</span>
+<style>.product-image-container-15 {
+    width: 240px;
+}
+.product-image-container-15 span.product-image-wrapper {
+    padding-bottom: 125%;
+}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-15");
+for (var i = 0; i < prodImageContainers.length; i++) {
+    prodImageContainers[i].style.width = "240px";
+}
+prodImageContainersWrappers = document.querySelectorAll(
+    ".product-image-container-15  span.product-image-wrapper"
+);
+for (var i = 0; i < prodImageContainersWrappers.length; i++) {
+    prodImageContainersWrappers[i].style.paddingBottom = "125%";
+}</script>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Affirm Water Bottle "
+                                       href="http://localhost/magento245p1/pub/default/affirm-water-bottle.html"
+                                       class="product-item-link">
+                                        Affirm Water Bottle                                     </a>
+                                </strong>
+                                                                            <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result"
+                 id="rating-result_15"
+                 title="60%">
+                <span><span>60%</span></span>
+            </div>
+            <script type="text&#x2F;javascript">var elem4tfQ4t4w = document.querySelector('#rating-result_15 span');
+if (elem4tfQ4t4w) {
+elem4tfQ4t4w.style.width = '60%';
+}</script>        </div>
+                <div class="reviews-actions">
+            <a class="action view"
+               href="http://localhost/magento245p1/pub/default/affirm-water-bottle.html#reviews">1                &nbsp;<span>Review                </span>
+            </a>
+        </div>
+    </div>
+                                
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="15" data-price-box="product-id-15">
+    
+
+<span class="price-container price-final_price&#x20;tax&#x20;weee"
+        >
+        <span  id="old-price-15-widget-product-grid"                data-price-amount="7"
+        data-price-type="finalPrice"
+        class="price-wrapper "
+    ><span class="price">$7.00</span></span>
+        </span>
+
+</div>
+                                
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="24-UG06" action="http://localhost/magento245p1/pub/default/checkout/cart/add/uenc/aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s/product/15/" method="post">
+                                                            <input type="hidden" name="product" value="15">
+                                                            <input type="hidden" name="uenc" value="aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0RvdkwyeHZZMkZzYUc5emRDOXRZV2RsYm5Sdk1qUTFjREV2Y0hWaUwyUmxabUYxYkhRdloyVmhjaTVvZEcxcy9wcm9kdWN0LzE1Lw,,">
+                                                            <input name="form_key" type="hidden" value="3ZjkiobIKSLXWajc" />                                                            <button type="submit"
+                                                                    title="Add to Cart"
+                                                                    class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </form>
+                                                                                                    </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#"
+                                                           data-post='{"action":"http:\/\/localhost\/magento245p1\/pub\/default\/wishlist\/index\/add\/","data":{"product":15,"uenc":"aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s"}}' class="action towishlist" data-action="add-to-wishlist" title="Add&#x20;to&#x20;Wish&#x20;List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post='{"action":"http:\/\/localhost\/magento245p1\/pub\/default\/catalog\/product_compare\/add\/","data":{"product":"15","uenc":"aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s"}}' title="Add&#x20;to&#x20;Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="http://localhost/magento245p1/pub/default/sprite-yoga-companion-kit.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-45">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo"
+                        src="http://localhost/magento245p1/pub/media/catalog/product/cache/4139e9dea4a926acb715096a8edd0db5/l/u/luma-yoga-kit-2.jpg"
+            loading="lazy"
+            width="240"
+            height="300"
+            alt="Sprite&#x20;Yoga&#x20;Companion&#x20;Kit"/></span>
+</span>
+<style>.product-image-container-45 {
+    width: 240px;
+}
+.product-image-container-45 span.product-image-wrapper {
+    padding-bottom: 125%;
+}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-45");
+for (var i = 0; i < prodImageContainers.length; i++) {
+    prodImageContainers[i].style.width = "240px";
+}
+prodImageContainersWrappers = document.querySelectorAll(
+    ".product-image-container-45  span.product-image-wrapper"
+);
+for (var i = 0; i < prodImageContainersWrappers.length; i++) {
+    prodImageContainersWrappers[i].style.paddingBottom = "125%";
+}</script>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Sprite Yoga Companion Kit"
+                                       href="http://localhost/magento245p1/pub/default/sprite-yoga-companion-kit.html"
+                                       class="product-item-link">
+                                        Sprite Yoga Companion Kit                                    </a>
+                                </strong>
+                                                                                                    
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="45" data-price-box="product-id-45">
+            <p class="price-from">
+            
+
+<span class="price-container price-final_price&#x20;tax&#x20;weee"
+        >
+            <span class="price-label">From</span>
+        <span  id="old-price-45-widget-product-grid"                data-price-amount="61"
+        data-price-type="minPrice"
+        class="price-wrapper "
+    ><span class="price">$61.00</span></span>
+        </span>
+                    </p>
+        <p class="price-to">
+            
+
+<span class="price-container price-final_price&#x20;tax&#x20;weee"
+        >
+            <span class="price-label">To</span>
+        <span  id="old-price-45-widget-product-grid"                data-price-amount="77"
+        data-price-type="maxPrice"
+        class="price-wrapper "
+    ><span class="price">$77.00</span></span>
+        </span>
+                    </p>
+    </div>
+                                
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="24-WG080" action="http://localhost/magento245p1/pub/default/sprite-yoga-companion-kit.html?options=cart" method="post">
+                                                            <input type="hidden" name="product" value="45">
+                                                            <input type="hidden" name="uenc" value="aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvc3ByaXRlLXlvZ2EtY29tcGFuaW9uLWtpdC5odG1sP29wdGlvbnM9Y2FydA,,">
+                                                            <input name="form_key" type="hidden" value="3ZjkiobIKSLXWajc" />                                                            <button type="submit"
+                                                                    title="Add to Cart"
+                                                                    class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </form>
+                                                                                                    </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#"
+                                                           data-post='{"action":"http:\/\/localhost\/magento245p1\/pub\/default\/wishlist\/index\/add\/","data":{"product":45,"uenc":"aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s"}}' class="action towishlist" data-action="add-to-wishlist" title="Add&#x20;to&#x20;Wish&#x20;List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post='{"action":"http:\/\/localhost\/magento245p1\/pub\/default\/catalog\/product_compare\/add\/","data":{"product":"45","uenc":"aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ1cDEvcHViL2RlZmF1bHQvZ2Vhci5odG1s"}}' title="Add&#x20;to&#x20;Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                        </li>                                    </ol>
+            </div>
+                    </div>
+    </div>
+        <script type="text/x-magento-init">
+    {
+        ".block.widget [data-role=tocart-form]": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+    </script>
+    

@@ -1,0 +1,3 @@
+require.config({"config": {
+        "jsbuild":{"Apptrian_FacebookPixel/js/section.js":"/**\r\n * @category  Apptrian\r\n * @package   Apptrian_FacebookPixel\r\n * @author    Apptrian\r\n * @copyright Copyright (c) Apptrian (http://www.apptrian.com)\r\n * @license   http://www.apptrian.com/license Proprietary Software License EULA\r\n */\r\n\r\ndefine([\r\n    'uiComponent',\r\n    'Magento_Customer/js/customer-data'\r\n], function (Component, customerData) {\r\n    'use strict';\r\n\r\n    return Component.extend({\r\n        initialize: function () {\r\n            this._super();\r\n            this.apptrian_facebook_pixel_matching_section = customerData.get('apptrian_facebook_pixel_matching_section');\r\n        }\r\n    });\r\n});\r\n"}
+}});

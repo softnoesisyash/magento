@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_ScheduleShipping
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="magedelight" translate="label" sortOrder="300">
+            <label>Magedelight</label> 
+        </tab>
+        <section id="magedelight_ScheduleShipping" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"> 
+            <label>Schedule Shipping</label>
+            <tab>magedelight</tab>
+            <resource>Magedelight_ScheduleShipping::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable ScheduleShipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>`Enable ScheduleShipping` setting.</comment>
+                </field>
+                <field id="deleverydate_label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label for Delivery Date</label>
+                </field>
+                <field id="deliverydate_mandatory" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Make Delivery Date Mandatory</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to make Delivery date mandatory for customers.</comment>
+                </field>
+                <field id="deliverycharge_label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label for Delivery Charge</label>
+                </field>
+                <!-- <field id="minimum_order_amount" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Order Amount</label>
+                </field> -->
+                <field id="show_deliverycomment" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Delivery Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="deliverycomment_label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label for Delivery Date Comments</label>
+                    <depends>
+                        <field id="*/*/show_deliverycomment">1</field>
+                    </depends>
+                </field>
+                <field id="callme_before_delivery" translate="label comment" type="select" sortOrder="5.5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Call Me Before Delivery</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to Show option for call Functionality.</comment>
+                </field>
+                <field id="additional_info" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Additional Info</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="additionalinfo_text" type="textarea" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Additional Info For Customers</label>
+                    <depends>
+                        <field id="*/*/additional_info">1</field>
+                    </depends>
+                </field>
+                <field id="enable_emailnotification" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Do you want email notification ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="emailreminder_occurrence_before" type="text" translate="label" sortOrder="9" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>Send Reminder Of Occurrence Before</label>
+                    <frontend_class>validate-number validate-digits reminder-greater validate-greater-than-zero</frontend_class>
+                    <comment><![CDATA[Define in number of days.It Should be greater than allowed to Order delivery before.]]></comment>
+                    <depends>
+                        <field id="*/*/enable_emailnotification">1</field>
+                    </depends>
+                </field>
+                <field id="emailnotification_id" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Notification Id</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="*/*/enable_emailnotification">1</field>
+                    </depends>
+                </field>
+                <field id="customer_groups" translate="label" type="multiselect" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Customer Groups</label>
+                    <source_model>Magedelight\ScheduleShipping\Model\Source\CustomerGroups</source_model>
+                </field>
+            </group>
+
+            <group id="calender_view" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Calendar view Management</label>
+
+                <field id="delivery_type" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Delivery Schedule in</label>
+                    <source_model>Magedelight\ScheduleShipping\Model\Source\DeliverySchedule</source_model>
+                </field>
+                <field id="show_time" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Time In Calendar</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show time in calendar.</comment>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                    </depends>
+                </field>
+                
+                <field id="deliverydays" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum interval of days between the order and delivery date</label>
+                    <frontend_class>validate-number validate-digits reminder-greater validate-greater-than-zero</frontend_class>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                    </depends>
+                </field>
+                
+                <field id="maximumdeliverydays" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum interval of days between the order and delivery date</label>
+                    <frontend_class>validate-number validate-digits reminder-greater validate-greater-than-zero</frontend_class>
+                    <backend_model>Magedelight\ScheduleShipping\Model\System\Config\Backend\MaximumInterval</backend_model>
+                    <!-- <validate>validate-max-min-check</validate> -->
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                    </depends>
+                </field>
+                
+                <field id="sameday" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Same Day Delivery</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                    </depends>
+                </field>
+                <field id="sameday_fees" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Same Day Delivery Charge</label>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                        <field id="*/*/sameday">1</field>
+                    </depends>
+                </field>
+                <!-- <field id="sameday_intervaltime" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum interval of hours between the order placing time and delivery time</label>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                        <field id="*/*/sameday">1</field>
+                    </depends>
+                </field> -->
+
+                <field id="nextday" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Next Day Delivery</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                    </depends>
+                </field>
+                <field id="nextday_fees" type="text" sortOrder="6" showInDefault="6" showInWebsite="1" showInStore="1">
+                    <label>Next Day Delivery Charge</label>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                        <field id="*/*/nextday">1</field>
+                    </depends>
+                </field>
+                <field id="maximum_quota_day" type="text" sortOrder="6" showInDefault="6" showInWebsite="1" showInStore="1">
+                    <label>Maximum Quota Per Day</label>
+                    <depends>
+                        <field id="*/*/delivery_type">1</field>
+                    </depends>
+                </field>
+                <field id="maximum_quota_time" type="text" sortOrder="6" showInDefault="6" showInWebsite="1" showInStore="1">
+                    <label>Maximum Quota Per Time Interval</label>
+                    <depends>
+                        <field id="*/*/delivery_type">2</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="timeslot" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Time Slot Setting</label>
+                <field id="deliverydays" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Number Of Delivery Days</label>
+                    <validate>validate-greater-than-zero required-entry integer</validate>
+                </field>
+                <field id="deliveryhours" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum interval of hours between the order placing time and delivery time</label>
+                    <validate>validate-zero-or-greater integer</validate>
+                </field>
+                <field id="add_timeslot" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Timeslot</label>
+                    <frontend_model>Magedelight\ScheduleShipping\Block\Adminhtml\Config\TimeslotSetting\Addtimeslot</frontend_model>
+                    <backend_model>Magedelight\ScheduleShipping\Model\System\Config\Backend\SingledayoffArraySerialized</backend_model>
+                </field>
+                
+                <field id="disable_timeslot_day" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Time Slot of Day</label>
+                    <frontend_model>Magedelight\ScheduleShipping\Block\Adminhtml\Config\TimeslotSetting\Daytimeslot</frontend_model>
+                    <backend_model>Magedelight\ScheduleShipping\Model\System\Config\Backend\SingledayoffArraySerialized</backend_model>
+                </field>
+                <field id="disable_timeslot_date" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Time Slot of Particular Date</label>
+                    <frontend_model>Magedelight\ScheduleShipping\Block\Adminhtml\Config\TimeslotSetting\Datetimeslot</frontend_model>
+                    <backend_model>Magedelight\ScheduleShipping\Model\System\Config\Backend\SingledayoffArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="dayoff" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Holiday Management</label>
+                <field id="days" translate="label" type="multiselect" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Day Off</label>
+                    <source_model>Magedelight\ScheduleShipping\Model\Source\Day</source_model>
+                </field>
+                <field id="singleday_off" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Single Day Off</label>
+                    <frontend_model>Magedelight\ScheduleShipping\Block\Adminhtml\Config\Singledayoff</frontend_model>
+                    <backend_model>Magedelight\ScheduleShipping\Model\System\Config\Backend\SingledayoffArraySerialized</backend_model>
+                </field>
+                <field id="periodday_off" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>From-To period Off</label>
+                    <frontend_model>Magedelight\ScheduleShipping\Block\Adminhtml\Config\Periodday\Perioddayoff</frontend_model>
+                    <backend_model>Magedelight\ScheduleShipping\Model\System\Config\Backend\SingledayoffArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="user_guide" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>User Guide</label>
+                <field id="user_guide_note" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Guide</label>
+                    <frontend_model>Magedelight\ScheduleShipping\Block\Adminhtml\Config\Note\Userguide</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

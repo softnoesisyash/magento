@@ -1,0 +1,5 @@
+/** custom less file test */
+.page-header .panel.wrapper,
+.page-header .panel.wrapper * {
+  color: #ff0000 !important;
+}

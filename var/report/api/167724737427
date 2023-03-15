@@ -1,0 +1,1 @@
+"Fatal Error: 'Allowed memory size of 792723456 bytes exhausted (tried to allocate 702550016 bytes)' in '\/var\/www\/html\/magento245p1\/app\/code\/Softnoesis\/ShippingAttribute\/Observer\/SaveOrderBeforeSalesModelQuote.php' on line 46"

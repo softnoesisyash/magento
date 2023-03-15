@@ -1,0 +1,1131 @@
+<?php /** * @category Apptrian * @package Apptrian_FacebookPixel * @author Apptrian * @copyright Copyright (c) Apptrian (http://www.apptrian.com) * @license http://www.apptrian.com/license Proprietary Software License EULA */ /** * Facebook Pixel Code block * * @var $block \Apptrian\FacebookPixel\Block\Code */ $data = $block->getFacebookPixelData(); $idData = $data['id_data']; $action = $data['full_action_name']; $pageHandles = $data['page_handles']; $pageHandlesCategory = $data['page_handles_category']; $pageHandlesProduct = $data['page_handles_product']; $pageHandlesQuote = $data['page_handles_quote']; $pageHandlesOrder = $data['page_handles_order']; $pageHandlesSearch = $data['page_handles_search']; $isPixelEnabled = $block->isPixelEnabled(); $isApiEnabled = $block->isApiEnabled(); $isBaseCodeEnabled = $block->isBaseCodeEnabled(); $firingMode = $block->getFiringMode(); $isPageViewEnabled = $block->isEventEnabled('PageView'); $isPageViewWithAll = $block->isPageViewWithAll(); $isPageViewWithAllApi = $block->isPageViewWithAll(true); $isMoveParamsOutsideContentsEnabled = $block->isMoveParamsOutsideContentsEnabled(); $isDataProcessingEnabled = $block->isDataProcessingEnabled(); $dpo = $block->getDpo(); $dpoCountry = $block->getDpoCountry(); $dpoState = $block->getDpoState(); if (in_array($action, $pageHandles) && ($isPixelEnabled || $isApiEnabled)): ?> <script>
+require([
+    'jquery',
+    'mage/url'
+], function ($, mageUrl) {
+    
+    function getUserData()
+    {
+        mageUrl.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getAdminBaseUrl();?>');
+        var sectionUrl = mageUrl.build('customer/section/load');
+        
+        $.ajax({
+            url: sectionUrl,
+            data: {
+                sections: "apptrian_facebook_pixel_matching_section"
+            },
+            type: "GET",
+            dataType : "json"
+        })
+        .done(function( json ) {
+            var result = json.apptrian_facebook_pixel_matching_section.matching_data;
+        });
+    }
+    
+    getUserData();
+    
+});</script><!-- Facebook Pixel Code --><script>
+    <?php if ($isBaseCodeEnabled): ?>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.agent='dvapptrian';n.queue=[];
+t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    <?php endif; ?> require([
+    'jquery',
+    'underscore',
+    'mage/url'
+], function ($, _, mageUrl) {
+    $(function () {
+        $(document).on('ajaxComplete', function (event, xhr, settings) {
+            
+            var userData = {};
+            <?= /* @noEscape */ $block->getUrlMarker() ?>
+            <?= /* @noEscape */ $block->getCategoryIdMarker() ?>
+            <?= /* @noEscape */ $block->getProductIdMarker() ?>
+            <?= /* @noEscape */ $block->getSearchMarker() ?>
+            
+            function isEmpty(obj) {
+                for(var prop in obj) {
+                    if(obj.hasOwnProperty(prop)) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            }
+            
+            mageUrl.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getAdminBaseUrl();?>');
+            var sectionUrl = mageUrl.build("customer/section/load")
+                + "?sections=apptrian_facebook_pixel_matching_section";
+            
+            if (settings.url === sectionUrl) {
+                var response = JSON.parse(xhr.responseText);
+                var section;
+                var sectionData;
+                
+                if (response !== 'undefined' && response.hasOwnProperty('apptrian_facebook_pixel_matching_section')) {
+                    section = response.apptrian_facebook_pixel_matching_section;
+                    
+                    if (section !== 'undefined' && section.hasOwnProperty('matching_data')) {
+                        sectionData = section.matching_data;
+                        
+                        if (!isEmpty(sectionData)) {
+                            userData = sectionData;
+                        }
+                    }
+                }
+    
+    <?php if ($isBaseCodeEnabled): ?>
+        <?php if ($isDataProcessingEnabled): ?>
+        fbq(
+            'dataProcessingOptions',
+            <?= /* @noEscape */ json_encode($dpo, JSON_PRETTY_PRINT) ?>,
+            <?= $block->escapeHtml($dpoCountry) ?>,
+            <?= $block->escapeHtml($dpoState) ?>
+        );
+        <?php endif; ?> <?php foreach ($idData as $id): ?> if (!isEmpty(userData)) {
+            fbq('init', '<?= $block->escapeHtml($id) ?>', userData);
+        } else {
+            fbq('init', '<?= $block->escapeHtml($id) ?>');
+        }
+        <?php endforeach ?> <?php endif; ?> function stringToHash(string)
+        {
+            var hash = 0;
+              
+            if (string.length == 0) return hash;
+              
+            for (i = 0; i < string.length; i++) {
+                char = string.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            
+            return String(hash);
+        }
+        
+        function generateEventId(eName)
+        {
+            var uCookie = document.cookie;
+            var uHash = stringToHash(uCookie);
+            var url = window.location.href;
+            var urlHash = stringToHash(url);
+            
+            function getTimeStamp() {
+                if (!Date.now) {
+                    Date.now = function() { return new Date().getTime(); }
+                }
+                
+                return Date.now();
+            }
+            
+            var timestamp = String(getTimeStamp());
+            
+            return eName + uHash + urlHash + timestamp;
+        }
+        
+        function fireConversionsApiEvent(eName, eData, eId)
+        {
+            mageUrl.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getAdminBaseUrl();?>');
+            var apiUrl = mageUrl.build('apptrian_facebookpixel/index/index');
+            
+            $.ajax({
+                url: apiUrl,
+                data: {
+                    eventName: eName,
+                    eventData: eData,
+                    eventId: eId,
+                    url: window.location.href,
+                    userData: userData
+                },
+                type: "POST",
+                dataType : "json",
+            })
+            .done(function( json ) {
+                var result = json;
+            });
+        }
+        
+        function moveParamsOutsideContents(data) {
+    <?php if ($isMoveParamsOutsideContentsEnabled): ?>
+        var isMoveParamsOutsideContentsEnabled = 1;
+    <?php else: ?>
+        var isMoveParamsOutsideContentsEnabled = 0;
+    <?php endif; ?> if (isMoveParamsOutsideContentsEnabled) {
+                if (!('contents' in data)) {
+                    return data;
+                }
+                
+                var contents       = data['contents'];
+                var contentsLength = contents.length;
+                
+                if (contentsLength > 1) {
+                    var c = 0;
+                    for (i = 0; i < contentsLength; i++) {
+                        var item = contents[i];
+                        
+                        for (var index in item) {
+                            if (index == 'id' || index == 'item_price' || index == 'quantity') {
+                                continue;
+                            }
+                            
+                            
+                            
+                            delete data['contents'][c][index];
+                        }
+                        
+                        c++;
+                    }
+                } else {
+                    var item = contents[0];
+                    for (var index in item) {
+                        var value = item[index];
+                        if (index == 'id' || index == 'item_price' || index == 'quantity') {
+                            continue;
+                        }
+                        
+                        
+                        data[index] = value;
+                        
+                        delete data['contents'][0][index];
+                    }
+                }
+                
+                return data;
+            } else {
+                return data;
+            }
+        }
+        
+        
+        var pageViewEventId = generateEventId("PageView");
+        var pageViewEventIdObj = {};
+        pageViewEventIdObj.eventID = pageViewEventId;
+        
+        var pageViewData = {};
+    
+    <?php
+    
+    if (in_array($action, $pageHandlesCategory)): ?> <?php if ($isPageViewEnabled && $isBaseCodeEnabled && $isPageViewWithAll): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($isPageViewEnabled && $isPageViewWithAllApi): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php
+        $categoryData = $block->getCategoryData();
+        if (!empty($categoryData)): ?> <?php
+                $categoryEventName = $categoryData['event_name'];
+                $categoryEventData = $categoryData['data'];
+                
+                $categoryEventNameJson = json_encode($categoryEventName, JSON_PRETTY_PRINT);
+                $categoryEventDataJson = json_encode($categoryEventData, JSON_FORCE_OBJECT);
+            ?> var categoryEventName = <?= /* @noEscape */ $categoryEventNameJson ?>;
+            var categoryEventData = <?= /* @noEscape */ $categoryEventDataJson ?>;
+            var categoryEventId = generateEventId(categoryEventName);
+            var categoryEventIdObj = {};
+            categoryEventIdObj.eventID = categoryEventId;
+            
+            <?php if ($block->isEventEnabled('ViewContent') && $isBaseCodeEnabled): ?>
+            fbq("track", categoryEventName, categoryEventData, categoryEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('ViewContent')): ?>
+            fireConversionsApiEvent(categoryEventName, categoryEventData, categoryEventId);
+            <?php endif; ?> <?php endif; ?> <?php
+    
+    
+    elseif (in_array($action, $pageHandlesProduct)): ?> <?php if ($isPageViewEnabled && $isBaseCodeEnabled && $isPageViewWithAll): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($isPageViewEnabled && $isPageViewWithAllApi): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php
+        $productData = $block->getProductData();
+        
+        if (!empty($productData)): ?> <?php
+            
+            $productEventData               = $productData['data'];
+            $productEventDataWithContentIds = $productData['data_with_content_ids'];
+            $contentsWithIds                = $productData['contents_with_ids'];
+            $bundleProductOptionsData       = $productData['bundle_product_options_data'];
+            $configurableProductOptionsData = $productData['configurable_product_options_data'];
+            $productId                      = $productData['product_id'];
+            $productType                    = $productData['product_type'];
+            $isDetectSelectedSkuEnabled     = $block->isDetectSelectedSkuEnabled($productType);
+            
+            if (empty($productEventDataWithContentIds)) {
+                $productEventDataForViewContent = $productEventData;
+            } else {
+                $productEventDataForViewContent = $productEventDataWithContentIds;
+            }
+        
+            $productEventDataJson               = json_encode($productEventData, JSON_PRETTY_PRINT);
+            $productEventDataForViewContentJson = json_encode($productEventDataForViewContent, JSON_PRETTY_PRINT);
+            $contentsWithIdsJson                = json_encode($contentsWithIds, JSON_PRETTY_PRINT);
+            $bundleProductOptionsDataJson       = json_encode($bundleProductOptionsData, JSON_PRETTY_PRINT);
+            $configurableProductOptionsDataJson = json_encode($configurableProductOptionsData, JSON_PRETTY_PRINT);
+            
+            ?> var productData = <?= /* @noEscape */ $productEventDataJson ?>;
+var productDataForViewContent = <?= /* @noEscape */ $productEventDataForViewContentJson ?>;
+var isDetectSelectedSkuEnabled = 0;
+var taxFlag = <?= /* @noEscape */ $block->getDisplayTaxFlag() ?>;
+
+            <?php if ($isDetectSelectedSkuEnabled): ?>
+            
+            isDetectSelectedSkuEnabled = 1;
+        
+                <?php if ($productType == 'bundle'): ?>
+                
+    
+var contentsWithIds = <?= /* @noEscape */ $contentsWithIdsJson ?>;
+var bundleProductOptionsData = <?= /* @noEscape */ $bundleProductOptionsDataJson ?>;
+var selectors = {};
+    
+    
+    for (let optionId in bundleProductOptionsData) {
+        
+        var nameAttributeValue = 'bundle_option_qty[' + optionId + ']';
+        selectors['qty' + optionId] = $('input[name="' + nameAttributeValue + '"]');
+        
+        
+        selectors['qty' + optionId].on('change keyup paste click', function() {
+            var idAttr        = $(this).attr('id');
+            var oId           = idAttr.replace(/[^0-9]/g, '');
+            var pId           = 0;
+            var typeAttr      = '';
+            var sIds          = 0;
+            var nameAttrValue = '';
+            var valueAttr     = '';
+            
+            
+            var siblings = bundleProductOptionsData[oId];
+            for (let sId in siblings) {
+                pId = siblings[sId]['product_id'];
+                
+                if ($('#bundle-option-' + oId + '-' + sId).length) {
+                    
+                    typeAttr = selectors['opt' + oId + '_' + sId].attr('type');
+                    
+                    if (typeAttr == 'radio') {
+                        if(selectors['opt' + oId + '_' + sId].is(':checked')) {
+                            
+                            contentsWithIds[pId].quantity = formatQty($(this).val());
+                        }
+                    }
+                    
+                    if (typeAttr == 'hidden') {
+                        
+                        
+                        contentsWithIds[pId].quantity = formatQty($(this).val());
+                    }
+                    
+                } else if ($('#bundle-option-' + oId).length) {
+                    
+                    sIds = selectors['opt' + oId + '_' + sId].parent().val();
+                    
+                    if (!Array.isArray(sIds) && sIds == sId) {
+                        
+                        contentsWithIds[pId].quantity = formatQty($(this).val());
+                    }
+                    
+                } else {
+                    
+                    
+                    nameAttrValue = 'bundle_option[' + optionId + ']';
+                    selectors['opt' + oId + '_' + sId] = $('input[name="' + nameAttrValue + '"]');
+                    
+                    typeAttr = selectors['opt' + oId + '_' + sId].attr('type');
+                    
+                    if (typeAttr == 'hidden') {
+                        valueAttr = selectors['opt' + oId + '_' + sId].attr('value');
+                        if (valueAttr == sId) {
+                            
+                            contentsWithIds[pId].quantity = formatQty($(this).val());
+                        }
+                    }
+                }
+            }
+        });
+        
+        
+        
+        for (let selectionId in bundleProductOptionsData[optionId]) {
+            
+            var pId = bundleProductOptionsData[optionId][selectionId]['product_id'];
+            
+            
+            var pQty = 0;
+            
+            
+            contentsWithIds[pId].quantity = 0;
+            
+            if ($('#bundle-option-' + optionId + '-' + selectionId).length) {
+                
+                
+                var idAttributeValue = 'bundle-option-' + optionId + '-' + selectionId;
+                selectors['opt' + optionId + '_' + selectionId] = $('#' + idAttributeValue);
+                
+                var typeAttr = selectors['opt' + optionId + '_' + selectionId].attr('type');
+                
+                
+                if (selectors['opt' + optionId + '_' + selectionId].is(':checked')) {
+                    
+                    if (selectors['qty' + optionId].length) {
+                        
+                        contentsWithIds[pId].quantity = formatQty(selectors['qty' + optionId].val());
+                    } else {
+                        
+                        
+                        pQty = bundleProductOptionsData[optionId][selectionId]['product_quantity'];
+                        
+                        contentsWithIds[pId].quantity = pQty;
+                    }
+                }
+                
+                
+                
+                if (typeAttr == 'hidden') {
+                    
+                    
+                    if (selectors['qty' + optionId].length) {
+                        
+                        contentsWithIds[pId].quantity = formatQty(selectors['qty' + optionId].val());
+                    } else {
+                        
+                        
+                        pQty = bundleProductOptionsData[optionId][selectionId]['product_quantity'];
+                        
+                        contentsWithIds[pId].quantity = pQty;
+                    }
+                }
+                
+                
+                
+                if (typeAttr == 'radio') {
+                    if ($('#bundle-option-' + optionId).length) {
+                        var oProperty = 'opt' + optionId + '_none';
+                        
+                        if (!selectors.hasOwnProperty(oProperty)) {
+                            
+                            selectors[oProperty] = $('#bundle-option-' + optionId);
+                        }
+                        
+                        
+                        selectors[oProperty].on('change, click', function() {
+                            var idAttr = $(this).attr('id');
+                            var oId    = idAttr.replace(/[^0-9]/g, '');
+                            
+                            if($(this).is(':checked')) {
+                                
+                                var spId = 0;
+                                var siblings = bundleProductOptionsData[oId];
+                                for (let s in siblings) {
+                                    spId = siblings[s]['product_id'];
+                                    contentsWithIds[spId].quantity = 0;
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                
+                
+                selectors['opt' + optionId + '_' + selectionId].on('change, click', function() {
+                    
+                    var idAttr   = $(this).attr('id');
+                    var typeAttr = $(this).attr('type');
+                    var oId      = 0;
+                    var sId      = 0;
+                    var pId      = 0;
+                    
+                    
+                    var optionAndSelectionIds = (idAttr.match(/\d+\.\d+|\d+\b|\d+(?=\w)/g) || []).map(
+                        function (v) {return +v;}
+                    );
+                    
+                    
+                    if (optionAndSelectionIds.length === 2) {
+                        oId = optionAndSelectionIds[0];
+                        sId = optionAndSelectionIds[1];
+                        
+                        pId = bundleProductOptionsData[oId][sId]['product_id'];
+                        
+                        
+                        if (typeAttr == 'checkbox') {
+                            
+                            if($(this).is(':checked')) {
+                                
+                                var pQty = bundleProductOptionsData[oId][sId]['product_quantity'];
+                                
+                                contentsWithIds[pId].quantity = pQty;
+                            }
+                            
+                            if(!$(this).is(':checked')) {
+                                
+                                contentsWithIds[pId].quantity = 0;
+                            }
+                        }
+                        
+                        
+                        if (typeAttr == 'radio') {
+                            if($(this).is(':checked')) {
+                                
+                                var spId = 0;
+                                var siblings = bundleProductOptionsData[oId];
+                                for (let s in siblings) {
+                                    spId = siblings[s]['product_id'];
+                                    contentsWithIds[spId].quantity = 0;
+                                }
+                                
+                                
+                                contentsWithIds[pId].quantity = formatQty(selectors['qty' + oId].val());
+                                
+                                
+                                setTimeout(function() {
+                                    
+                                    contentsWithIds[pId].quantity = formatQty(selectors['qty' + oId].val());
+                                }, 300);
+                                
+                            }
+                        }
+                    }
+                });
+                
+                
+                
+            } else if ($('#bundle-option-' + optionId).length) {
+                
+                
+                var idAttribute = 'bundle-option-' + optionId;
+                selectors['opt' + optionId + '_' + selectionId] = $(
+                    '#' + idAttribute + ' option[value=' + selectionId +']'
+                );
+                
+                
+                if (selectors['opt' + optionId + '_' + selectionId].is(':selected')) {
+                    
+                    if (selectors['qty' + optionId].length) {
+                        
+                        contentsWithIds[pId].quantity = formatQty(selectors['qty' + optionId].val());
+                    } else {
+                        
+                        pQty = bundleProductOptionsData[optionId][selectionId]['product_quantity'];
+                        
+                        contentsWithIds[pId].quantity = pQty;
+                    }
+                }
+                
+                
+                
+                selectors['opt' + optionId + '_' + selectionId].parent().on(
+                    'change, click', function() {
+                        
+                    var idAttr       = $(this).attr('id');
+                    var oId          = idAttr.replace(/[^0-9]/g, '');
+                    var sId          = $(this).val();
+                    var pId          = 0;
+                    var pQty         = 0;
+                    var multipleAttr = '';
+                    
+                    
+                    var siblings = bundleProductOptionsData[oId];
+                    var spId     = 0;
+                    
+                    for (let s in siblings) {
+                        spId = siblings[s]['product_id'];
+                        contentsWithIds[spId].quantity = 0;
+                    }
+                    
+                    if (Array.isArray(sId)) {
+                        
+                        
+                        
+                        
+                        for (var i = 0; i < sId.length; i++) {
+                            var selId = sId[i];
+                            
+                            
+                            if (oId && selId) {
+                                
+                                pId = bundleProductOptionsData[oId][selId]['product_id'];
+                                
+                                pQty = bundleProductOptionsData[oId][selId]['product_quantity'];
+                                
+                                contentsWithIds[pId].quantity = pQty;
+                            } else {
+                                
+                                
+                                for (let s in siblings) {
+                                    spId = siblings[s]['product_id'];
+                                    contentsWithIds[spId].quantity = 0;
+                                }
+                                
+                                multipleAttr = $(this).attr('multiple');
+                                
+                                if (multipleAttr != 'multiple') {
+                                    
+                                    
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        
+                        if (oId && sId) {
+                            
+                            pId = bundleProductOptionsData[oId][sId]['product_id'];
+                            
+                            contentsWithIds[pId].quantity = formatQty(selectors['qty' + oId].val());
+                        } else {
+                            
+                            
+                            for (let s in siblings) {
+                                spId = siblings[s]['product_id'];
+                                contentsWithIds[spId].quantity = 0;
+                            }
+                        }
+                    }
+                });
+                
+                
+                
+            } else {
+                
+                
+                
+                
+                var nameAttributeValue = 'bundle_option[' + optionId + ']';
+                selectors['opt' + optionId + '_' + selectionId] = $('input[name="' + nameAttributeValue + '"]');
+                
+                var typeAttr = selectors['opt' + optionId + '_' + selectionId].attr('type');
+                
+                if (typeAttr == 'hidden') {
+                    var valueAttr = selectors['opt' + optionId + '_' + selectionId].attr('value');
+                    if (valueAttr == selectionId) {
+                        
+                        pQty = bundleProductOptionsData[optionId][selectionId]['product_quantity'];
+                        
+                        contentsWithIds[pId].quantity = pQty;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    function updateProductData()
+    {
+        if('contents' in productData) {
+            
+            productData.contents = [];
+            
+            
+            productData.value = 0;
+            
+            var qty = 0;
+            var newValue = 0;
+            var itemValue = 0;
+            var itemTotal = 0;
+            var globalQty = formatQty($('#qty').val());
+            
+            for (let productId in contentsWithIds) {
+                qty = contentsWithIds[productId].quantity;
+                if (qty > 0) {
+                    
+                    if (globalQty > 1) {
+                        qty = qty * globalQty;
+                        contentsWithIds[productId].quantity = qty;
+                    }
+                    
+                    
+                    productData.contents.push(contentsWithIds[productId]);
+                    
+                    
+                    itemValue = contentsWithIds[productId].item_price;
+                    itemTotal = itemValue * qty;
+                    
+                    newValue += parseFloat(parseFloat(itemTotal).toFixed(2));
+                }
+            }
+            
+            
+            productData.value = parseFloat(parseFloat(newValue).toFixed(2));
+        }
+        
+        
+        
+        if('content_type' in productData) {
+            productData.content_type = 'product';
+        }
+    }
+    
+    
+                
+                <?php elseif ($productType == 'configurable'): ?>
+                
+    
+    var selectedPrice   = 0;
+    var selectedQty     = 0;
+    var selectedSku     = '';
+    var selectedSkuData = null;
+    var contentsWithIds = <?= /* @noEscape */ $contentsWithIdsJson ?>;
+    var configurableProductId = <?= /* @noEscape */ $productId ?>;
+    var $price        = $('#product-price-' + configurableProductId);
+    var $priceInclTax = $('#price-including-tax-product-price-' + configurableProductId);
+    
+    
+    $('.product-options-wrapper div').on('click', function() {
+        selectedProduct();
+    });
+    
+    function selectedProduct() {
+        var selectedOptions = {};
+        $('div.swatch-attribute').each(function(k,v) {
+            var attributeId    = $(v).attr('data-attribute-id');
+            var optionSelected = $(v).attr('data-option-selected');
+            if (!attributeId || !optionSelected) { return; }
+            selectedOptions[attributeId] = optionSelected;
+        });
+        
+        var productIdIndex = <?= /* @noEscape */ $configurableProductOptionsDataJson ?>;
+        var foundIds = [];
+        
+        $.each(productIdIndex, function (productId, attributes) {
+            var productIsSelected = function (attributes, selectedOptions) {
+                return _.isEqual(attributes, selectedOptions);
+            }
+            
+            if (productIsSelected(attributes, selectedOptions)) {
+                foundIds.push(productId);
+            } 
+        });
+        
+        if (foundIds.length) {
+            var selectedProductId = foundIds[0];
+            
+            if (selectedProductId in contentsWithIds) {
+                selectedSkuData = contentsWithIds[selectedProductId];
+                selectedSku     = contentsWithIds[selectedProductId]['id'];
+                
+                if (taxFlag) {
+                    if ($priceInclTax.length) {
+                        selectedPrice   = formatPrice($priceInclTax.text());
+                    } else {
+                        if ($price.length) {
+                            selectedPrice   = formatPrice($price.text());
+                        }
+                    }
+                } else {
+                    if ($price.length) {
+                        selectedPrice   = formatPrice($price.text());
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    if ($('#qty').length) {
+        $('#qty').on('change keyup paste click', function() {
+            
+            
+            selectedQty = formatQty($(this).val());
+        });
+    }
+    
+    
+    
+    function updateProductData()
+    {
+        if('contents' in productData) {
+            
+            if (selectedSkuData !== null) {
+                
+                productData.contents = [];
+                
+                productData.contents[0] = selectedSkuData;
+            }
+            
+            
+            if (selectedPrice) {
+                
+                productData.contents[0].item_price = selectedPrice;
+                
+                
+                if (selectedQty > 1) {
+                    var total = selectedQty * selectedPrice;
+                    
+                    productData.value = parseFloat(parseFloat(total).toFixed(2));
+                } else {
+                    productData.value = selectedPrice;
+                }
+            }
+            
+            if (selectedQty) {
+                productData.contents[0].quantity = selectedQty;
+            }
+            
+            if (selectedSku) {
+                productData.contents[0].id = selectedSku;
+            }
+        }
+        
+        
+        
+        if('content_type' in productData) {
+            productData.content_type = 'product';
+        }
+    }
+    
+    
+                
+                <?php elseif ($productType == 'grouped'): ?>
+                
+    
+    var contentsWithIds    = <?= /* @noEscape */ $contentsWithIdsJson ?>;
+    var selectors          = {};
+    var nameAttributeValue = '';
+    
+    for (let productId in contentsWithIds) {
+        
+        contentsWithIds[productId].quantity = 0;
+        
+        if (taxFlag) {
+            if ($('#price-including-tax-product-price-' + productId).length) {
+                selectors['price' + productId] = $('#price-including-tax-product-price-' + productId);
+            } else {
+                if ($('#product-price-' + productId).length) {
+                    selectors['price' + productId] = $('#product-price-' + productId);
+                }
+            }
+        } else {
+            if ($('#product-price-' + productId).length) {
+                selectors['price' + productId] = $('#product-price-' + productId);
+            }
+        }
+        
+        nameAttributeValue = 'super_group[' + productId + ']';
+        selectors['qty' + productId] = $('input[name="' + nameAttributeValue + '"]');
+        
+        
+        contentsWithIds[productId].quantity = selectors['qty' + productId].val();
+        contentsWithIds[productId].item_price = formatPrice(selectors['price' + productId].text());
+        
+        
+        selectors['qty' + productId].on('change keyup paste click', function() {
+            var nameAttr = $(this).attr('name');
+            var productId = nameAttr.replace(/[^0-9]/g, '');
+            
+            
+            
+            contentsWithIds[productId].quantity = parseFloat(parseFloat($(this).val()).toFixed(2));
+        });
+    }
+    
+    
+    function updateProductData()
+    {
+        if('contents' in productData) {
+            
+            productData.contents = [];
+            
+            
+            productData.value = 0;
+            
+            var qty = 0;
+            var newValue = 0;
+            var itemValue = 0;
+            var itemTotal = 0;
+            
+            for (let productId in contentsWithIds) {
+                qty = contentsWithIds[productId].quantity;
+                if (qty > 0) {
+                    
+                    productData.contents.push(contentsWithIds[productId]);
+                    
+                    
+                    itemValue = contentsWithIds[productId].item_price;
+                    itemTotal = itemValue * qty;
+                    
+                    newValue += parseFloat(parseFloat(itemTotal).toFixed(2));
+                }
+            }
+            
+            
+            productData.value = newValue;
+        }
+        
+        
+        
+        if('content_type' in productData) {
+            productData.content_type = 'product';
+        }
+    }
+    
+    
+                
+                <?php else: ?>
+                
+                
+    var selectedPrice = 0;
+    var selectedQty   = 0;
+    var productId     = <?= /* @noEscape */ $productId ?>;
+    var $price        = $('#product-price-' + productId);
+    var $priceInclTax = $('#price-including-tax-product-price-' + productId);
+    
+    
+    if ($('#qty').length) {
+        $('#qty').on('change keyup paste click', function() {
+            
+            
+            selectedQty = formatQty($(this).val());
+        });
+    }
+    
+    
+    
+    function updateProductData()
+    {
+        if('contents' in productData) {
+            
+            if (taxFlag) {
+                if ($priceInclTax.length) {
+                    selectedPrice = formatPrice($priceInclTax.text());
+                } else {
+                    if ($price.length) {
+                        selectedPrice = formatPrice($price.text());
+                    }
+                }
+            } else {
+                if ($price.length) {
+                    selectedPrice = formatPrice($price.text());
+                }
+            }
+            
+            var newValue     = 0;
+            var newItemPrice = 0;
+            var newQty       = 0;
+            
+            
+            if (selectedPrice > 0 ) {
+                productData.contents[0].item_price = selectedPrice;
+            }
+            
+            
+            if (selectedQty > 0 ) {
+                productData.contents[0].quantity = selectedQty;
+            }
+            
+            
+            newItemPrice = parseFloat(parseFloat(productData.contents[0].item_price).toFixed(2));
+            newQty       = parseFloat(parseFloat(productData.contents[0].quantity).toFixed(2));
+            newValue     = newItemPrice * newQty;
+            
+            
+            productData.value = parseFloat(parseFloat(newValue).toFixed(2));
+        }
+        
+        
+        
+        if('content_type' in productData) {
+            productData.content_type = 'product';
+        }
+    }
+    
+                
+                
+                <?php endif; ?> function formatQty(text)
+    {
+        
+        return parseFloat(parseFloat(text).toFixed(2));
+    }
+    
+    function formatPrice(text)
+    {
+        var decimalSymbol = escapeRegExp('<?= /* @noEscape */ $block->getPriceDecimalSymbol(); ?>');
+        
+        
+        
+        var regEx = new RegExp('[^0-9' + decimalSymbol + ']', 'gi');
+        var priceText = text.replace(regEx, '');
+        
+        
+        var price = priceText.replace(decimalSymbol, '.');
+        
+        
+        return parseFloat(parseFloat(price).toFixed(2));
+    }
+    
+    function escapeRegExp(text) {
+        return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    }
+    
+
+            
+            <?php endif; ?> var viewContentEventId = generateEventId('ViewContent');
+            var viewContentEventIdObj = {};
+            viewContentEventIdObj.eventID = viewContentEventId;
+            
+
+productDataForViewContent = moveParamsOutsideContents(productDataForViewContent);
+
+            <?php if ($block->isEventEnabled('ViewContent') && $isBaseCodeEnabled): ?>
+            fbq('track', 'ViewContent', productDataForViewContent, viewContentEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('ViewContent')): ?>
+            fireConversionsApiEvent('ViewContent', productDataForViewContent, viewContentEventId);
+            <?php endif; ?> $('#product-addtocart-button').on('click', function() {
+    
+    if (isDetectSelectedSkuEnabled) {
+        updateProductData();
+    }
+    
+    if (productData.contents.length) {
+        
+        productData = moveParamsOutsideContents(productData);
+        
+        var addToCartEventId = generateEventId('AddToCart');
+        var addToCartEventIdObj = {};
+        addToCartEventIdObj.eventID = addToCartEventId;
+        
+            <?php if ($block->isEventEnabled('AddToCart') && $isBaseCodeEnabled): ?>
+        fbq('track', 'AddToCart', productData, addToCartEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('AddToCart')): ?>
+        fireConversionsApiEvent('AddToCart', productData, addToCartEventId);
+            <?php endif; ?> }
+});
+
+$('.action.towishlist').on('click', function() {
+    
+    if (isDetectSelectedSkuEnabled) {
+        updateProductData();
+    }
+    
+    if (productData.contents.length) {
+        
+        productData = moveParamsOutsideContents(productData);
+        
+        var addToWishlistEventId = generateEventId('AddToWishlist');
+        var addToWishlistEventIdObj = {};
+        addToWishlistEventIdObj.eventID = addToWishlistEventId;
+        
+            <?php if ($block->isEventEnabled('AddToWishlist') && $isBaseCodeEnabled): ?>
+        fbq('track', 'AddToWishlist', productData, addToWishlistEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('AddToWishlist')): ?>
+        fireConversionsApiEvent('AddToWishlist', productData, addToWishlistEventId);
+            <?php endif; ?> }
+});
+            <?php
+        
+        endif; ?> <?php
+    
+    
+    elseif (in_array($action, $pageHandlesSearch)): ?> <?php if ($isPageViewEnabled && $isBaseCodeEnabled && $isPageViewWithAll): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($isPageViewEnabled && $isPageViewWithAllApi): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php
+        $searchData = $block->getSearchData();
+        if (!empty($searchData)): ?> <?php
+                $searchEventName = $searchData['event_name'];
+                $searchEventData = $searchData['data'];
+                
+                $searchEventNameJson = json_encode($searchEventName, JSON_PRETTY_PRINT);
+                $searchEventDataJson = json_encode($searchEventData, JSON_FORCE_OBJECT);
+            ?> var searchEventName = <?= /* @noEscape */ $searchEventNameJson ?>;
+            var searchEventData = <?= /* @noEscape */ $searchEventDataJson ?>;
+            var searchEventId = generateEventId(searchEventName);
+            var searchEventIdObj = {};
+            searchEventIdObj.eventID = searchEventId;
+            
+            <?php if ($block->isEventEnabled('Search') && $isBaseCodeEnabled): ?>
+            fbq("track", searchEventName, searchEventData, searchEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('Search')): ?>
+            fireConversionsApiEvent(searchEventName, searchEventData, searchEventId);
+            <?php endif; ?> <?php endif; ?> <?php
+    
+    
+    elseif ($action == 'customer_account_create'): ?> <?php if ($isPageViewEnabled && $isBaseCodeEnabled && $isPageViewWithAll): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($isPageViewEnabled && $isPageViewWithAllApi): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php
+        $regData = $block->getDataForCompleteRegistrationEvent();
+        if (!empty($regData)): ?> <?php
+                $regEventName = $regData['event_name'];
+                $regEventData = $regData['data'];
+                
+                $regEventNameJson = json_encode($regEventName, JSON_PRETTY_PRINT);
+                $regEventDataJson = json_encode($regEventData, JSON_FORCE_OBJECT);
+            ?> $('#form-validate.form-create-account button.submit').on('click', function() {
+                var regEventName = <?= /* @noEscape */ $regEventNameJson ?>;
+                var regEventData = <?= /* @noEscape */ $regEventDataJson ?>;
+                var regEventId = generateEventId(regEventName);
+                var regEventIdObj = {};
+                regEventIdObj.eventID = regEventId;
+                
+                <?php if ($block->isEventEnabled('CompleteRegistration') && $isBaseCodeEnabled): ?>
+                fbq("track", regEventName, regEventData, regEventIdObj);
+                <?php endif; ?> <?php if ($block->isApiEventEnabled('CompleteRegistration')): ?>
+                fireConversionsApiEvent(regEventName, regEventData, regEventId);
+                <?php endif; ?> });
+        <?php endif; ?> <?php
+    
+    
+    elseif (in_array($action, $pageHandlesQuote)): ?> <?php if ($isPageViewEnabled && $isBaseCodeEnabled && $isPageViewWithAll): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($isPageViewEnabled && $isPageViewWithAllApi): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php
+        $quoteData = $block->getQuoteData();
+        if (!empty($quoteData)): ?> <?php
+                $quoteEventName = $quoteData['event_name'];
+                $quoteEventData = $quoteData['data'];
+                
+                $quoteEventNameJson = json_encode($quoteEventName, JSON_PRETTY_PRINT);
+                $quoteEventDataJson = json_encode($quoteEventData, JSON_PRETTY_PRINT);
+            ?> var quoteEventName = <?= /* @noEscape */ $quoteEventNameJson ?>;
+            var quoteEventData = <?= /* @noEscape */ $quoteEventDataJson ?>;
+            var quoteEventId = generateEventId(quoteEventName);
+            var quoteEventIdObj = {};
+            quoteEventIdObj.eventID = quoteEventId;
+            
+            <?php if ($block->isEventEnabled('InitiateCheckout') && $isBaseCodeEnabled): ?>
+            fbq("track", quoteEventName, quoteEventData, quoteEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('InitiateCheckout')): ?>
+            fireConversionsApiEvent(quoteEventName, quoteEventData, quoteEventId);
+            <?php endif; ?> <?php endif; ?> <?php
+    
+    
+    elseif (in_array($action, $pageHandlesOrder)): ?> <?php if ($isPageViewEnabled && $isBaseCodeEnabled && $isPageViewWithAll): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($isPageViewEnabled && $isPageViewWithAllApi): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php
+        $orderData = $block->getOrderData();
+        if (!empty($orderData)): ?> <?php
+                $orderEventName = $orderData['event_name'];
+                $orderEventData = $orderData['data'];
+                
+                $orderEventNameJson = json_encode($orderEventName, JSON_PRETTY_PRINT);
+                $orderEventDataJson = json_encode($orderEventData, JSON_PRETTY_PRINT);
+            ?> var orderEventName = <?= /* @noEscape */ $orderEventNameJson ?>;
+            var orderEventData = <?= /* @noEscape */ $orderEventDataJson ?>;
+            var orderEventId = generateEventId(orderEventName);
+            var orderEventIdObj = {};
+            orderEventIdObj.eventID = orderEventId;
+            
+            <?php if ($block->isEventEnabled('Purchase') && $isBaseCodeEnabled): ?>
+            fbq("track", orderEventName, orderEventData, orderEventIdObj);
+            <?php endif; ?> <?php if ($block->isApiEventEnabled('Purchase')): ?>
+            fireConversionsApiEvent(orderEventName, orderEventData, orderEventId);
+            <?php endif; ?> <?php endif; ?> <?php
+    
+    
+    else: ?> <?php if ($block->isEventEnabled('PageView') && $isBaseCodeEnabled): ?>
+            fbq("track", "PageView", pageViewData, pageViewEventIdObj);
+        <?php endif; ?> <?php if ($block->isApiEventEnabled('PageView')): ?>
+            fireConversionsApiEvent("PageView", pageViewData, pageViewEventId);
+        <?php endif; ?> <?php endif;  ?> } 
+    }); 
+    }); 
+});</script><?php if ($block->isNoScriptEnabled()): ?> <noscript><?php foreach ($idData as $id): ?> <img height="1" width="1" style="display:none" alt="Facebook Pixel <?= $block->escapeHtml($id) ?>" src="https://www.facebook.com/tr?id=<?= $block->escapeHtml($id) ?>&ev=PageView&noscript=1"/><?php endforeach; ?></noscript><?php endif; ?> <!-- End Facebook Pixel Code --><?php endif; ?>
